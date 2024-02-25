@@ -6,7 +6,7 @@ const Main = () => {
 
   return (
     <main>
-      <button onClick={logout}>Log Out</button>
+      <h1>Hello</h1>
     </main>
   );
 };

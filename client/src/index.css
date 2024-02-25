@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    color-scheme: light;
+}
+
+@font-face {
+    font-family: 'Valorant';
+    src: url('./assets/fonts/Valorant.ttf');
+
+    font-weight: 400;
+    font-style: normal;
+}

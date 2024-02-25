@@ -20,6 +20,12 @@ const TeamSchema = new mongoose.Schema({
       ref: "Week",
     },
   ],
+  key: {
+    type: String,
+    required: true,
+    default: () => Math.random().toString(36).substring(2, 7),
+  },
+  
 });
 
 const Team = mongoose.model("Team", TeamSchema);

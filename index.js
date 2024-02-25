@@ -1,5 +1,6 @@
 require("dotenv").config();
 const express = require("express");
+var cors = require('cors');
 const morgan = require("morgan");
 
 const app = express();
@@ -8,7 +9,8 @@ require("./config/mongodb.js");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(morgan("combined"));
+app.use(cors());
+app.use(morgan("dev"));
 
 //Routes
 const apiRoutes = require("./routes/api.routes.js");

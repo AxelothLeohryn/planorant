@@ -61,8 +61,8 @@ const CreateUser = () => {
                 type="submit"
                 className={
                   loadingUserName
-                    ? "w-full btn btn-loading"
-                    : "w-full btn btn-primary"
+                    ? "w-full btn btn-loading bg-red-8"
+                    : "w-full btn btn-primary bg-red-8"
                 }
               >
                 {loadingUserName ? "Loading" : "Start Planning"}
@@ -74,7 +74,7 @@ const CreateUser = () => {
           <div className="justify-center form-control">
             <a
               onClick={logout}
-              className="text-sm link link-underline-hover link-primary"
+              className="text-sm link link-underline-hover link-primary text-red-400"
             >
               Log out
             </a>

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useAuth } from "./context/AuthContext";
 
 import Header from "./components/Header/Header";
-import Main from "./components/Main/Main";
+import Main from "./components/Main/Planner/Planner";
 import Footer from "./components/Footer/Footer";
 import Authenticate from "./components/Authenticate/Authenticate";
 import CreateUser from "./components/CreateUser/CreateUser";

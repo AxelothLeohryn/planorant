@@ -1,14 +1,16 @@
 import React from "react";
-import { useAuth } from "../../context/AuthContext";
+import {Route, Routes, Navigate} from "react-router-dom";
+import Planner from "./Planner";
+import Profile from "./Profile";
 
 const Main = () => {
-  const { logout } = useAuth();
-
-  return (
-    <main>
-      <h1>Hello</h1>
-    </main>
-  );
+  return <main className="mx-6">
+    <Routes>
+      <Route path="/" element={<Planner />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/*" element={<Navigate to={"/"} />} />
+    </Routes>
+  </main>;
 };
 
 export default Main;

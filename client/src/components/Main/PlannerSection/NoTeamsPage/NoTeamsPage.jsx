@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { useAuth } from "../../../../context/AuthContext";
 import CreateTeamForm from "./CreateTeamForm/CreateTeamForm";
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
-const NoTeamsPage = () => {
-  const { userName } = useAuth();
+const NoTeamsPage = ( {setHaveTeam}) => {
+  const { userName, setTeam } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [inviteCode, setInviteCode] = useState("");
 
@@ -12,25 +13,25 @@ const NoTeamsPage = () => {
 
   const handleJoin = async (e) => {
     e.preventDefault();
-    // Get id of the user logged in
-    const playerData = await axios.get(`/api/player/username/${userName}`);
-    // Get the team that has the key of the invite code
     try {
-      
+      // Get id of the user logged in
+      const playerData = await axios.get(`/api/player/username/${userName}`);
+      // Get the team that has the key of the invite code
+      const teamData = await axios.get(`/api/team/key/${inviteCode}`);
+      // Add the user to the team
+      await axios.put(`/api/player/edit/${playerData.data._id}`, {
+        team: teamData.data._id,
+      });
+      // Add the team to the user
+      await axios.put(`/api/team/edit/${teamData.data._id}`, {
+        players: [...teamData.data.players, playerData.data._id],
+      });
+      toast.success(`You have joined the team: ${teamData.data.name}`);
+      // Update team status to refresh the PlannerComponent
+      setHaveTeam(true);
     } catch (error) {
-      
+      toast.error(`No team found with the invite code: ${inviteCode}`);
     }
-    const teamData = await axios.get(`/api/team/key/${inviteCode}`);
-    // Add the user to the team
-    await axios.put(`/api/player/edit/${playerData.data._id}`, {
-      team: teamData.data._id,
-    });
-    // Add the team to the user
-    await axios.put(`/api/team/edit/${teamData.data._id}`, {
-      players: [...teamData.data.players, playerData.data._id],
-    });
-    // Refresh the page
-    window.location.reload();
   };
 
   return (
@@ -94,7 +95,7 @@ const NoTeamsPage = () => {
 
               <input
                 placeholder="Team Code"
-                type="email"
+                type="text"
                 className="max-w-full input"
               />
             </div>

@@ -36,7 +36,7 @@ const PlannerSection = () => {
     return (
       <>
         {isLoading && <div className="skeleton-pulse h-24"></div>}
-        {!isLoading && <NoTeamsPage />}
+        {!isLoading && <NoTeamsPage setHaveTeam={setHaveTeam} />}
       </>
     );
   } else {

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "./context/AuthContext";
 import { BrowserRouter } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 import Header from "./components/Header/Header";
 import Main from "./components/Main/";
@@ -23,6 +24,17 @@ function App() {
           <Main />
           <Footer />
         </BrowserRouter>
+        <Toaster
+          position="top-right"
+          toastOptions={{
+            success: {
+              className: "alert alert-success text-white"
+            },
+            error: {
+              className: "alert alert-error text-white"
+            },
+          }}
+        />
       </>
     );
   }

@@ -11,6 +11,7 @@ router.get("/team/:id", teamsController.getTeam);
 router.post("/team/create", teamsController.createTeam);
 router.put("/team/edit/:id", teamsController.editTeam);
 router.delete("/team/delete/:id", teamsController.deleteTeam);
+router.get("/team/key/:key", teamsController.getTeamByInviteCode);
 
 //Week Routes
 router.get("/team/:id/weeks", weeksController.getWeeksByTeamId);

@@ -27,7 +27,7 @@ const CreateTeamForm = ({ onClose }) => {
       await axios.put(`/api/player/edit/${userId}`, {
         team: teamId,
       });
-      setTeam(teamId);
+      setTeam(teamId); 
       setIsLoading(false);
       onClose();
     } catch (error) {

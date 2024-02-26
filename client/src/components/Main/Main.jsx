@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
-import Planner from "./Planner";
+import PlannerSection from "./PlannerSection";
 import Profile from "./Profile";
 
 const Main = () => {
@@ -8,7 +8,7 @@ const Main = () => {
     <>
       <main className="mx-6">
         <Routes>
-          <Route path="/" element={<Planner />} />
+          <Route path="/" element={<PlannerSection />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/*" element={<Navigate to={"/"} />} />
         </Routes>

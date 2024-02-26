@@ -53,9 +53,22 @@ const deleteTeam = async (req, res) => {
   }
 };
 
+const getTeamByInviteCode = async (req, res) => {
+  const key = req.params.key;
+  try {
+    const team = await model.getTeamByInviteCode(key);
+    res.status(200).json(team);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Error getting team by invite code", error: error.message });
+  }
+};
+
 module.exports = {
   createTeam,
   editTeam,
   getTeam,
   deleteTeam,
+  getTeamByInviteCode
 };

@@ -1,11 +1,37 @@
 import React, { useState } from "react";
 import { useAuth } from "../../../../context/AuthContext";
 import CreateTeamForm from "./CreateTeamForm/CreateTeamForm";
+import axios from "axios";
 
 const NoTeamsPage = () => {
+  const { userName } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [inviteCode, setInviteCode] = useState("");
 
   const toggleModal = () => setIsModalOpen(!isModalOpen);
+
+  const handleJoin = async (e) => {
+    e.preventDefault();
+    // Get id of the user logged in
+    const playerData = await axios.get(`/api/player/username/${userName}`);
+    // Get the team that has the key of the invite code
+    try {
+      
+    } catch (error) {
+      
+    }
+    const teamData = await axios.get(`/api/team/key/${inviteCode}`);
+    // Add the user to the team
+    await axios.put(`/api/player/edit/${playerData.data._id}`, {
+      team: teamData.data._id,
+    });
+    // Add the team to the user
+    await axios.put(`/api/team/edit/${teamData.data._id}`, {
+      players: [...teamData.data.players, playerData.data._id],
+    });
+    // Refresh the page
+    window.location.reload();
+  };
 
   return (
     <>
@@ -58,7 +84,10 @@ const NoTeamsPage = () => {
       </section>
       <div className="max-w-96 mx-auto divider divider-horizontal">OR</div>
       <section>
-        <form className="flex flex-row items-end w-full max-w-sm gap-6 mx-auto">
+        <form
+          onChange={(e) => setInviteCode(e.target.value)}
+          className="flex flex-row items-end w-full max-w-sm gap-6 mx-auto"
+        >
           <div className="form-group">
             <div className="form-field">
               <label className="form-label">Join a Team</label>
@@ -70,8 +99,11 @@ const NoTeamsPage = () => {
               />
             </div>
           </div>
-          <div className="">
-            <button className="gap-2 transition btn btn-primary bg-backgroundSecondary hover:bg-red-600 duration-100">
+          <div>
+            <button
+              onClick={handleJoin}
+              className="gap-2 transition btn btn-primary bg-backgroundSecondary hover:bg-red-600 duration-100"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="icon icon-tabler icon-tabler-plus size-6"

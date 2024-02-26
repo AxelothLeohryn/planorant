@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import NoTeamsPage from "./NoTeamsPage/NoTeamsPage";
+import Planner from "./Planner/Planner";
 import { useAuth } from "../../../context/AuthContext";
 
-const Planner = () => {
-  const {userName, team, setTeam} = useAuth();
-  const [haveTeam, setHaveTeam] = useState(false);
+const PlannerSection = () => {
+  const { userName, team, setTeam } = useAuth();
+  const [haveTeam, setHaveTeam] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const checkUserTeam = async () => {
@@ -13,9 +15,9 @@ const Planner = () => {
         const response = await axios.get(`/api/player/username/${userName}`);
         // console.log(response.data);
         if (response.data && response.data.team) {
-          console.log("check");
-          setHaveTeam(true);
+          //Store team ID in context
           setTeam(response.data.team);
+          setHaveTeam(true);
         } else {
           setHaveTeam(false);
         }
@@ -28,21 +30,22 @@ const Planner = () => {
     if (userName) {
       checkUserTeam();
     }
-  }, [team]); // Depend on team so the effect runs again if it changes
+  }, [team]); // If team changes (or gets created), re-check if user has a team
 
   if (!haveTeam) {
     return (
       <>
-        <NoTeamsPage />
+        {isLoading && <div className="skeleton-pulse h-24"></div>}
+        {!isLoading && <NoTeamsPage />}
       </>
     );
   } else {
     return (
       <>
-        <h1>Planner</h1>
-        <p>{team}</p>
+        {isLoading && <div className="skeleton-pulse h-24"></div>}
+        {!isLoading && (<Planner setHaveTeam={setHaveTeam}/>)}
       </>
     );
   }
 };
-export default Planner;
+export default PlannerSection;

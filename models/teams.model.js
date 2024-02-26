@@ -31,4 +31,10 @@ async function deleteTeam(id) {
   return result;
 }
 
-module.exports = { createTeam, editTeam, getTeam, deleteTeam };
+async function getTeamByInviteCode(key) {
+  const team = await model.Team.findOne({ key });
+  return team;
+}
+
+
+module.exports = { createTeam, editTeam, getTeam, deleteTeam, getTeamByInviteCode };

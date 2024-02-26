@@ -8,25 +8,33 @@ const Authenticate = () => {
 
   return (
     <>
-      <main className="flex flex-col w-full h-screen">
-        <h1 className="mx-auto mt-36 text-5xl lg:text-7xl font-valorant">PLANORANT</h1>
-        <h2 className="mx-auto mb-6 font-bold">Premiere Planner</h2>
-        <div className="flex flex-col items-center justify-center h-16 mx-auto bg-red-700 p-4 m-4 rounded-full">
-          <GoogleLogin
-            onSuccess={(credentialResponse) => {
-              const decodedToken = jwtDecode(credentialResponse?.credential);
-              login(decodedToken.email); // Use the login method from context
-            }}
-            onError={() => {
-              console.log("Login Failed");
-            }}
-          shape="pill"
-          theme="filled_black"
-          logo_alignment="left"
-          useOneTap={false}
-          auto_select={false}
-          text="Sign in with Google"
-          />
+      <main className="flex flex-col items-center justify-center h-screen relative">
+        <img
+          className="absolute inset-0 object-cover w-full h-full"
+          src="login-background.svg"
+          alt="Background"
+        />
+        <div className="flex flex-col justify-center items-center max-h-screen max-w-screen relative z-10 text-center">
+          <h1 className="text-5xl lg:text-7xl font-valorant">PLANORANT</h1>
+          <div className="flex flex-row gap-2">
+            <h2 className="mb-6 font-bold font-DIN">
+              Valorant Premier Planner
+            </h2>
+            <img className="size-5" src="/Premier.webp" alt="Premier Logo" />
+          </div>
+          <div className="flex flex-col items-center justify-center">
+            <GoogleLogin
+              onSuccess={(credentialResponse) => {
+                const decodedToken = jwtDecode(credentialResponse?.credential);
+                login(decodedToken.email);
+              }}
+              onError={() => {
+                console.log("Login Failed");
+              }}
+              shape="circle"
+              theme="filled_black"
+            />
+          </div>
         </div>
       </main>
     </>

@@ -4,7 +4,7 @@ import CreateTeamForm from "./CreateTeamForm/CreateTeamForm";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 
-const NoTeamsPage = ( {setHaveTeam}) => {
+const NoTeamsPage = ({ setHaveTeam }) => {
   const { userName, setTeam } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [inviteCode, setInviteCode] = useState("");
@@ -40,26 +40,23 @@ const NoTeamsPage = ( {setHaveTeam}) => {
         <button
           type="button"
           onClick={toggleModal}
-          className="gap-4 transition btn btn-primary btn-xl bg-red-8 hover:bg-red-600 duration-100"
+          className="gap-1 flex items-center justify-center transition btn btn-primary btn-xl bg-red-8 hover:bg-red-600 duration-100"
         >
+          Create a Team
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="icon icon-tabler icon-tabler-row-insert-bottom"
-            width="44"
-            height="44"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="#ffffff"
             fill="none"
-            strokeLinecap="round"
-            strokeLinejoin="round"
+            viewBox="0 0 24 24"
+            strokeWidth="2.5"
+            stroke="currentColor"
+            className="w-6 h-6 relative bottom-[2px]"
           >
-            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <path d="M20 6v4a1 1 0 0 1 -1 1h-14a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1h14a1 1 0 0 1 1 1z" />
-            <path d="M12 15l0 4" />
-            <path d="M14 17l-4 0" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M12 4.5v15m7.5-7.5h-15"
+            />
           </svg>
-          Create a Team
         </button>
         <input
           className="modal-state"
@@ -105,23 +102,21 @@ const NoTeamsPage = ( {setHaveTeam}) => {
               onClick={handleJoin}
               className="gap-2 transition btn btn-primary bg-backgroundSecondary hover:bg-red-600 duration-100"
             >
+              Join
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="icon icon-tabler icon-tabler-plus size-6"
-                width="44"
-                height="44"
+                fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth="1.5"
-                stroke="#ffffff"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+                stroke="currentColor"
+                className="size-4"
               >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M12 5l0 14" />
-                <path d="M5 12l14 0" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                />
               </svg>
-              Join
             </button>
           </div>
         </form>

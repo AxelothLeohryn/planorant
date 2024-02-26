@@ -5,6 +5,7 @@ export default {
     extend: {
       fontFamily: {
         valorant: ["Valorant", "system-ui"],
+        DIN: ["DIN", "system-ui"],
       },
     },
   },

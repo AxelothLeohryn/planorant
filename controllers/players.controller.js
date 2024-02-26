@@ -34,7 +34,7 @@ const createPlayer = async (req, res) => {
 const getPlayerById = async (req, res) => {
   const { id } = req.params;
   try {
-    let player = await model.getPlayer(id);
+    let player = await model.getPlayerById(id);
     res.json(player);
   } catch (error) {
     res.status(500).json({ message: "Error getting player", error: error.message });

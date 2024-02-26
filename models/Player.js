@@ -30,6 +30,10 @@ const PlayerSchema = new mongoose.Schema({
       },
     },
   ],
+  image: {
+    type: String,
+    default: "https://static.wikia.nocookie.net/valorant/images/3/35/Jett_icon.png",
+  },
 });
 
 const Player = mongoose.model("Player", PlayerSchema);

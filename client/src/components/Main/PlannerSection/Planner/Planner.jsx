@@ -71,9 +71,9 @@ const Planner = ({ setHaveTeam }) => {
   } else {
     return (
       <>
-        <section>
-          <div className="lg:flex lg:items-center lg:justify-between bg-[#232323] p-5 rounded">
-            <div className="min-w-0 flex-1">
+        <section className="w-full max-w-[1920px] mx-auto">
+          <div className="w-full lg:flex lg:items-center lg:justify-between bg-[#232323] p-5 rounded">
+            <div className="min-w-0 flex-1 mb-2">
               <h2 className="text-2xl font-bold leading-7 text-white sm:truncate sm:text-3xl sm:tracking-tight">
                 {teamData.name}
               </h2>

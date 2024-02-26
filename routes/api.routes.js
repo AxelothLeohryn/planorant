@@ -20,11 +20,12 @@ router.put("/week/edit/:id", weeksController.editWeek);
 router.delete("/week/delete/:id", weeksController.deleteWeek);
 
 //Player Routes
-// router.get("/player/:id", playersController.getPlayer);
+router.get("/player/:id", playersController.getPlayerById);
+router.get("/player/username/:username", playersController.getPlayerByUsername);
 router.post("/player/create", playersController.createPlayer);
 router.post("/player/checkLogin", playersController.checkLogin);
 // router.put("/player/add/:id", playersController.addPlayer);
-// router.put("/player/edit/:id", playersController.editPlayer);
+router.put("/player/edit/:id", playersController.editPlayer);
 // router.delete("/player/delete/:id", playersController.deletePlayer);
 
 

@@ -2,9 +2,13 @@ const model = require("../models/teams.model.js");
 
 const createTeam = async (req, res) => {
   const teamData = req.body;
+  console.log(teamData);
   try {
-    await model.createTeam(teamData);
-    res.status(201).json({ message: "Team created" });
+    const createdTeam = await model.createTeam(teamData);
+    res.status(201).json({
+      message: "Team created",
+      team: createdTeam,
+    });
   } catch (error) {
     res
       .status(500)
@@ -53,5 +57,5 @@ module.exports = {
   createTeam,
   editTeam,
   getTeam,
-  deleteTeam,   
+  deleteTeam,
 };

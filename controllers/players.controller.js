@@ -31,4 +31,35 @@ const createPlayer = async (req, res) => {
   }
 };
 
-module.exports = { checkLogin, createPlayer };
+const getPlayerById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    let player = await model.getPlayer(id);
+    res.json(player);
+  } catch (error) {
+    res.status(500).json({ message: "Error getting player", error: error.message });
+  }
+}
+
+const getPlayerByUsername = async (req, res) => {
+  const { username } = req.params;
+  try {
+    let player = await model.getPlayerByUsername(username);
+    res.json(player);
+  } catch (error) {
+    res.status(500).json({ message: "Error getting player", error: error.message });
+  }
+}
+
+const editPlayer = async (req, res) => {
+  const { id } = req.params;
+  const playerData = req.body;
+  try {
+    let player = await model.editPlayer(id, playerData);
+    res.json(player);
+  } catch (error) {
+    res.status(500).json({ message: "Error editing player", error: error.message });
+  }
+}
+
+module.exports = { checkLogin, createPlayer, getPlayerById, getPlayerByUsername, editPlayer };

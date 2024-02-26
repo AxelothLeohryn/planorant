@@ -10,7 +10,6 @@ const Header = () => {
       <header>
         <nav className="navbar">
           <div className="navbar-start">
-            
             <div className="avatar avatar-ring avatar-md">
               <div className="dropdown-container">
                 <div className="dropdown dropdown-hover">
@@ -24,8 +23,15 @@ const Header = () => {
                     />
                   </label>
                   <div className="dropdown-menu dropdown-menu-bottom-right">
-                    <NavLink to="/profile" className="text-base dropdown-item">Profile</NavLink>
-                    <NavLink to="/invites" className="text-base dropdown-item">Invites</NavLink>
+                  <NavLink to="/" className="text-base dropdown-item">
+                      Team
+                    </NavLink>
+                    <NavLink to="/profile" className="text-base dropdown-item">
+                      Profile
+                    </NavLink>
+                    <NavLink to="/invites" className="text-base dropdown-item">
+                      Invites
+                    </NavLink>
                     {/* <a tabindex="-1" className="text-sm dropdown-item">
                     Account settings
                   </a>
@@ -33,7 +39,10 @@ const Header = () => {
                     Subscriptions
                   </a> */}
                     <div className="dropdown-divider"></div>
-                    <a className="text-sm text-center transition duration-200 text- align dropdown-item hover:bg-red-500" onClick={logout}>
+                    <a
+                      className="text-sm text-center transition duration-200 text- align dropdown-item hover:bg-red-500"
+                      onClick={logout}
+                    >
                       Log Out
                     </a>
                   </div>
@@ -42,10 +51,14 @@ const Header = () => {
             </div>
             <p className="navbar-item">{userName}</p>
           </div>
-          <div className="navbar-center">
-		<NavLink to="/" className="navbar-item">Teams</NavLink>
-
-	</div>
+          {/* <div className="navbar-center">
+            <NavLink to="/" className="navbar-item">
+              Team
+            </NavLink>
+            <NavLink to="/profile" className="navbar-item">
+              Profile
+            </NavLink>
+          </div> */}
         </nav>
       </header>
     </>

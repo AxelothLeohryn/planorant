@@ -24,6 +24,7 @@ export const AuthProvider = ({ children }) => {
   const [userName, setUserName] = useState(
     JSON.parse(localStorage.getItem("userName")) || ""
   );
+  const [team, setTeam] = useState(null);
 
   useEffect(() => {
     // Persist isAuthenticated to localStorage whenever it changes
@@ -34,7 +35,9 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem("isNewUser", isNewUser);
     // Persist userName to localStorage whenever it changes
     localStorage.setItem("userName", JSON.stringify(userName));
-  }, [isAuthenticated, userEmail, isNewUser, userName]);
+    // Persist team to localStorage whenever it changes
+    localStorage.setItem("team", JSON.stringify(team));
+  }, [isAuthenticated, userEmail, isNewUser, userName, team]);
 
   const login = async (email) => {
     setIsAuthenticated(true);
@@ -74,6 +77,8 @@ export const AuthProvider = ({ children }) => {
     setIsNewUser,
     userName,
     setUserName,
+    team,
+    setTeam,
   };
 
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;

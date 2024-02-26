@@ -1,12 +1,13 @@
 const model = require("./Team.js");
 
 async function createTeam(teamData) {
-  const { name, description } = teamData;
+  const { name, players } = teamData;
   const Team = new model.Team({
     name,
-    description,
+    players,
   });
   const result = await Team.save();
+  return result;
 }
 
 async function editTeam(id, teamData) {

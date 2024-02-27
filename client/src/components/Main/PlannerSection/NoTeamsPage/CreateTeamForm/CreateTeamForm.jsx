@@ -85,7 +85,7 @@ const CreateTeamForm = ({ onClose }) => {
               <label htmlFor="team-tag-input" className="form-label"></label>
               <input
                 id="team-tag-input"
-                placeholder="#TEAM TAG"
+                placeholder="TEAM TAG"
                 type="text"
                 className={`input rounded-none max-w-full ${
                   !isTagInputValid ? "invalid:border-red-900" : ""

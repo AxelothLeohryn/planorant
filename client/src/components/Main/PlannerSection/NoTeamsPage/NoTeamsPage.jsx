@@ -46,10 +46,10 @@ const NoTeamsPage = ({ setHaveTeam }) => {
         <button
           type="button"
           onClick={toggleModal}
-          className="gap-1 flex items-center justify-center transition btn btn-primary btn-xl bg-red-7 hover:bg-red-8 duration-100"
+          className="gap-1 flex items-center justify-center btn btn-primary btn-xl bg-red-7 hover:bg-red-8 hover:scale-110 transition duration-100"
         >
           Create a Team
-          <svg
+          {/* <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -62,7 +62,7 @@ const NoTeamsPage = ({ setHaveTeam }) => {
               strokeLinejoin="round"
               d="M12 4.5v15m7.5-7.5h-15"
             />
-          </svg>
+          </svg> */}
         </button>
         <input
           className="modal-state"
@@ -99,7 +99,7 @@ const NoTeamsPage = ({ setHaveTeam }) => {
               <input
                 placeholder="Team Code"
                 type="text"
-                className="max-w-full input"
+                className="max-w-full input focus:border-red-7 transition"
               />
             </div>
           </div>

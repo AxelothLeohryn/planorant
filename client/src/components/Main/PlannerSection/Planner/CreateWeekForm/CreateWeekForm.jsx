@@ -6,7 +6,7 @@ import updateLocale from "dayjs/plugin/updateLocale";
 import { DatePicker } from "@mui/x-date-pickers";
 import Button from "@mui/material/Button";
 
-const CreateWeekForm = ({ team, teamData, onClose }) => {
+const CreateWeekForm = ({ team, teamData, onClose, refresh }) => {
   const [season, setSeason] = useState("");
   const [weekName, setWeekName] = useState("");
   const [map, setMap] = useState("");
@@ -74,6 +74,7 @@ const CreateWeekForm = ({ team, teamData, onClose }) => {
       toast.success(`Week ${weekName} created.`);
       //Close the modal
       onClose();
+      refresh();
     } catch (error) {
       console.error(error);
       toast.error("Failed to create week.");
@@ -179,6 +180,7 @@ const CreateWeekForm = ({ team, teamData, onClose }) => {
               required
               onChange={handleSeasonInputChange}
             />
+             */}
             <label htmlFor="week-name-input" className="form-label"></label>
             <input
               id="week-name-input"
@@ -191,7 +193,7 @@ const CreateWeekForm = ({ team, teamData, onClose }) => {
               maxLength={15}
               required
               onChange={handleWeekInputChange}
-            /> */}
+            />
 
             <div className="flex gap-2 mt-2">
               <ButtonDatePicker

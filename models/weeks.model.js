@@ -7,22 +7,24 @@ async function getWeeksByTeamId(id) {
 }
 
 async function createWeek(weekData) {
-  const { season, weekName, map, teamId } = weekData;
+  const { season, weekName, map, weekdays, teamId } = weekData;
   const Week = new model.Week({
     season,
     weekName,
     map,
+    weekdays,
     teamId,
   });
   const result = await Week.save();
-  //Add week to team
-  const team = await teamModel.Team.findById(id);
-  if (team) {
-    team.weeks.push(result._id);
-    await team.save();
-  } else {
-    throw new Error("Team not found");
-  }
+  return result;
+  // //Add week to team
+  // const team = await teamModel.Team.findById(id);
+  // if (team) {
+  //   team.weeks.push(result._id);
+  //   await team.save();
+  // } else {
+  //   throw new Error("Team not found");
+  // }
 }
 
 async function getWeek(id) {

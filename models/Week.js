@@ -3,11 +3,9 @@ const mongoose = require("../config/mongodb.js");
 const WeekSchema = new mongoose.Schema({
   season: {
     type: String,
-    required: true,
   },
   weekName: {
     type: String,
-    required: true,
   },
   map: {
     type: String,

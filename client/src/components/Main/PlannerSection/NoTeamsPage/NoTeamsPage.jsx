@@ -18,14 +18,20 @@ const NoTeamsPage = ({ setHaveTeam }) => {
       const playerData = await axios.get(`/api/player/username/${userName}`);
       // Get the team that has the key of the invite code
       const teamData = await axios.get(`/api/team/key/${inviteCode}`);
-      // Add the user to the team
+      // Add the team to the user
       await axios.put(`/api/player/edit/${playerData.data._id}`, {
         team: teamData.data._id,
       });
-      // Add the team to the user
+      // Add the user to the team
       await axios.put(`/api/team/edit/${teamData.data._id}`, {
         players: [...teamData.data.players, playerData.data._id],
       });
+      //Add the weeks of the team to the user
+      for (const weekId of teamData.data.weeks) {
+        await axios.put(`/api/player/edit/${playerData.data._id}`, {
+          weeks: [...playerData.data.weeks, { week: weekId }],
+        });
+      }
       toast.success(`You have joined the team: ${teamData.data.name}`);
       // Update team status to refresh the PlannerComponent
       setHaveTeam(true);
@@ -40,7 +46,7 @@ const NoTeamsPage = ({ setHaveTeam }) => {
         <button
           type="button"
           onClick={toggleModal}
-          className="gap-1 flex items-center justify-center transition btn btn-primary btn-xl bg-red-8 hover:bg-red-600 duration-100"
+          className="gap-1 flex items-center justify-center transition btn btn-primary btn-xl bg-red-7 hover:bg-red-8 duration-100"
         >
           Create a Team
           <svg
@@ -68,7 +74,7 @@ const NoTeamsPage = ({ setHaveTeam }) => {
         {isModalOpen && (
           <div className="modal w-screen h-screen">
             <label className="modal-overlay" onClick={toggleModal}></label>
-            <div className="modal-content flex flex-col gap-5 max-w-3xl">
+            <div className="modal-content p-10 flex flex-col gap-5 max-w-3xl">
               <button
                 onClick={toggleModal}
                 className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
@@ -100,7 +106,7 @@ const NoTeamsPage = ({ setHaveTeam }) => {
           <div>
             <button
               onClick={handleJoin}
-              className="gap-2 transition btn btn-primary bg-backgroundSecondary hover:bg-red-600 duration-100"
+              className="gap-2 transition btn btn-primary bg-backgroundSecondary hover:bg-red-8 hover:translate-x-1 duration-100"
             >
               Join
               <svg

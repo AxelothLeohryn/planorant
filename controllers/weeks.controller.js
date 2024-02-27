@@ -15,8 +15,8 @@ const getWeeksByTeamId = async (req, res) => {
 const createWeek = async (req, res) => {
   const weekData = req.body;
   try {
-    await model.createWeek(weekData);
-    res.status(201).json({ message: "Week created and added to team" });
+    const result = await model.createWeek(weekData);
+    res.status(201).json({ message: "Week created and added to team", data: result});
   } catch (error) {
     res
       .status(500)

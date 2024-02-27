@@ -10,11 +10,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
     "@headlessui/react": "^1.7.18",
     "@heroicons/react": "^2.1.1",
+    "@mui/material": "^5.15.11",
+    "@mui/x-date-pickers": "^6.19.5",
     "@react-oauth/google": "^0.12.1",
     "autoprefixer": "^10.4.17",
     "axios": "^1.6.7",
+    "dayjs": "^1.11.10",
     "jwt-decode": "^4.0.0",
     "postcss": "^8.4.35",
     "react": "^18.2.0",

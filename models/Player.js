@@ -38,7 +38,7 @@ const PlayerSchema = new mongoose.Schema({
 PlayerSchema.pre("save", function (next) {
   // Only set the image if it's not already set and the username is provided
   if (!this.image && this.username) {
-    this.image = `https://placehold.co/400x400/232323/bd3944?text=${this.username.charAt(0) + this.username.charAt(1)}`;
+    this.image = `https://placehold.co/400x400/232323/e74a39?text=${this.username.charAt(0) + this.username.charAt(1)}`;
   }
   next();
 });

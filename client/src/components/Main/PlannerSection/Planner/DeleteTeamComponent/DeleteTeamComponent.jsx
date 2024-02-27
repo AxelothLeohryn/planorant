@@ -25,15 +25,15 @@ const DeleteTeamComponent = ({ teamData, handleDeleteTeam }) => {
             </p>
           </span>
           <div className="flex gap-3">
-            <label htmlFor="modal-delete-team" className="btn btn-block">
-              Cancel
-            </label>
             <button
               onClick={handleDeleteTeam}
               className="btn btn-block bg-red-7"
             >
               Delete
             </button>
+            <label htmlFor="modal-delete-team" className="btn btn-block">
+              Cancel
+            </label>
           </div>
         </div>
       </div>

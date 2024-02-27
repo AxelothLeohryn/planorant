@@ -12,6 +12,15 @@ export default {
   plugins: [
     require("rippleui")({
       // defaultStyle: false,
+      removeThemes: ["light"],
+      themes: [
+        {
+          themeName: "dark",
+          colors: {
+            primary: "#e74a39",
+          },
+        },
+      ],
     }),
   ],
 };

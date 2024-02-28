@@ -152,7 +152,7 @@ const AgentSelector = ({ playerData, weekId }) => {
           className={`absolute inset-x-0 md:left-[28%] max-w-[420px] px-4 z-50 `}
           ref={selectorRef}
         >
-          <div className="flex flex-col bg-backgroundSecondary border-border rounded-xl shadow-lg z-50 max-h-52 overflow-y-scroll hide-scrollbar">
+          <div className="flex flex-col bg-backgroundSecondary border-border rounded-xl shadow-lg z-50 max-h-96 overflow-y-scroll hide-scrollbar">
             <button
               className="btn btn-sm btn-circle btn-ghost absolute right-5 top-2"
               onClick={() => setShowSelector(false)}

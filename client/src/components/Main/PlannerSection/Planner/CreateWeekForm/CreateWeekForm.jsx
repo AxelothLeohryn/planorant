@@ -4,7 +4,9 @@ import toast, { Toaster } from "react-hot-toast";
 import dayjs from "dayjs";
 import updateLocale from "dayjs/plugin/updateLocale";
 import { DatePicker } from "@mui/x-date-pickers";
+import { createTheme } from "@mui/material/styles";
 import Button from "@mui/material/Button";
+import { set } from "mongoose";
 
 const CreateWeekForm = ({ team, teamData, onClose, refresh }) => {
   const [season, setSeason] = useState("");
@@ -13,6 +15,7 @@ const CreateWeekForm = ({ team, teamData, onClose, refresh }) => {
   const [thursday, setThursday] = useState(null);
   const [saturday, setSaturday] = useState(null);
   const [sunday, setSunday] = useState(null);
+  const [valoplant, setValoplant] = useState("");
 
   const [isSeasonInputValid, setIsSeasonInputValid] = useState(true);
   const [isWeekInputValid, setIsWeekInputValid] = useState(true);
@@ -20,6 +23,7 @@ const CreateWeekForm = ({ team, teamData, onClose, refresh }) => {
   const [isThursdayInputValid, setIsThursdayInputValid] = useState(true);
   const [isSaturdayInputValid, setIsSaturdayInputValid] = useState(true);
   const [isSundayInputValid, setIsSundayInputValid] = useState(true);
+  const [isValoplantInputValid, setIsValoplantInputValid] = useState(true);
 
   const maps = [
     "Bind",
@@ -33,6 +37,17 @@ const CreateWeekForm = ({ team, teamData, onClose, refresh }) => {
     "Lotus",
     "Sunset",
   ];
+
+  const valorantColor = createTheme({
+    palette: {
+      valorant: {
+        main: "e74a39",
+        light: "#aa2429",
+        dark: "#aa2429",
+        contrastText: "#ffffff",
+      },
+    },
+  });
 
   dayjs.extend(updateLocale);
   dayjs.updateLocale("en", {
@@ -55,6 +70,7 @@ const CreateWeekForm = ({ team, teamData, onClose, refresh }) => {
           sunday,
         },
         teamId: team,
+        valoplant,
       });
       console.log(response);
       // Add the week to each player in the team
@@ -118,6 +134,12 @@ const CreateWeekForm = ({ team, teamData, onClose, refresh }) => {
     setSunday(formattedDate);
   };
 
+  const handleValoplantInputChange = (e) => {
+    const inputValue = e.target.value;
+    setValoplant(inputValue);
+    setIsValoplantInputValid(inputValue.length >= 12 && inputValue.length <= 35);
+  };
+
   // MUI Date Picker inside Button
   function ButtonField(props) {
     const {
@@ -131,7 +153,8 @@ const CreateWeekForm = ({ team, teamData, onClose, refresh }) => {
 
     return (
       <Button
-        variant=""
+        variant="outlined"
+        color="error"
         id={id}
         disabled={disabled}
         ref={ref}
@@ -190,7 +213,7 @@ const CreateWeekForm = ({ team, teamData, onClose, refresh }) => {
                 !isWeekInputValid ? "invalid:border-red-900" : ""
               } transition`}
               minLength={5}
-              maxLength={15}
+              maxLength={30}
               required
               onChange={handleWeekInputChange}
             />
@@ -244,8 +267,35 @@ const CreateWeekForm = ({ team, teamData, onClose, refresh }) => {
                 </option>
               ))}
             </select>
+            <span className="italic text-gray-500 text-sm font-light mt-2 translate-y-2">
+              Create a new Valoplant strategy{" "}
+              <a
+                className="link text-red-8 text-sm"
+                href="https://valoplant.gg/"
+                target="_blank"
+                rel="noreferrer"
+
+              >
+                here
+              </a>
+            </span>
+            <label htmlFor="week-valoplant" className="form-label"></label>
+            <input
+              id="week-valoplant"
+              placeholder="Valoplant URL"
+              type="text"
+              className={`input rounded-none max-w-full ${
+                !isValoplantInputValid ? "invalid:border-red-900" : ""
+              } transition`}
+              required
+              minLength={12}
+              maxLength={35}
+              onChange={handleValoplantInputChange}
+            />
+            
           </div>
         </div>
+
         {/* <div className="form-group">
           <div className="form-field">
             <label htmlFor="team-tag-input" className="form-label"></label>

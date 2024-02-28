@@ -7,13 +7,14 @@ async function getWeeksByTeamId(id) {
 }
 
 async function createWeek(weekData) {
-  const { season, weekName, map, weekdays, teamId } = weekData;
+  const { season, weekName, map, weekdays, teamId, valoplant } = weekData;
   const Week = new model.Week({
     season,
     weekName,
     map,
     weekdays,
     teamId,
+    valoplant,
   });
   const result = await Week.save();
   return result;

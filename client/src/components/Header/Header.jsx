@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { NavLink } from "react-router-dom";
 
@@ -23,13 +23,34 @@ const Header = () => {
                     />
                   </label>
                   <div className="dropdown-menu dropdown-menu-bottom-right">
-                  <NavLink to="/" className="text-base dropdown-item">
+                    <NavLink
+                      to="/"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "text-base dropdown-item bg-border"
+                          : "text-base dropdown-item"
+                      }
+                    >
                       Team
                     </NavLink>
-                    <NavLink to="/profile" className="text-base dropdown-item">
+                    <NavLink
+                      to="/profile"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "text-base dropdown-item bg-border"
+                          : "text-base dropdown-item"
+                      }
+                    >
                       Profile
                     </NavLink>
-                    <NavLink to="/invites" className="text-base dropdown-item">
+                    <NavLink
+                      to="/invites"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "text-base dropdown-item bg-border"
+                          : "text-base dropdown-item"
+                      }
+                    >
                       Invites
                     </NavLink>
                     {/* <a tabindex="-1" className="text-sm dropdown-item">

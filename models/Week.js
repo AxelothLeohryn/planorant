@@ -22,6 +22,9 @@ const WeekSchema = new mongoose.Schema({
       type: String,
     },
   },
+  valoplant: {
+    type: String,
+  },
   teamId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Team",

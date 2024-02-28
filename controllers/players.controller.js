@@ -54,6 +54,7 @@ const getPlayerByUsername = async (req, res) => {
 const editPlayer = async (req, res) => {
   const { id } = req.params;
   const playerData = req.body;
+  console.log(playerData);
   try {
     let player = await model.editPlayer(id, playerData);
     res.json(player);

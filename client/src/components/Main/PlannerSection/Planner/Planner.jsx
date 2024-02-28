@@ -28,7 +28,6 @@ const Planner = ({ setHaveTeam }) => {
       if (team) {
         try {
           const teamFetchedData = await axios.get(`/api/team/${team}`);
-          console.log(teamFetchedData.data);
           setTeamData(teamFetchedData.data);
           setTeamMembersNumber(teamFetchedData.data.players.length);
 
@@ -39,21 +38,17 @@ const Planner = ({ setHaveTeam }) => {
           const playersResponses = await Promise.all(playersPromises);
 
           // Extract the data from each player response
-          console.log(playersResponses);
           const playersDataFetched = playersResponses.map(
             (response) => response.data
           );
           setPlayersData(playersDataFetched);
-          console.log("Loading false...");
           setIsLoading(false);
 
-          console.log(playersData);
         } catch (error) {
           console.error("Error fetching team data:", error);
         }
       }
     };
-    console.log(team);
     fetchTeamData();
   }, [team, refresh]);
 

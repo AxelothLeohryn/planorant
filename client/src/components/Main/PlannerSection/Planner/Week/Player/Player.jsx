@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import AgentSelector from "./AgentSelector/AgentSelector";
 
 const Player = ({ playerData, weekId, onAvailabilityChange }) => {
   const [availableTHU, setAvailableTHU] = useState(null);
@@ -83,8 +84,14 @@ const Player = ({ playerData, weekId, onAvailabilityChange }) => {
         <div className="avatar avatar-xl border border-content3">
           <img src={playerData.image} alt={`${playerData.username} avatar`} />
         </div>
-        <h3 className="text-xl font-bold">{playerData.username}</h3>
-        <p>Agents +</p>
+        <div className="flex justify-between items-center gap-6">
+          <h3 className="text-xl font-bold text-nowrap">
+            {playerData.username}
+          </h3>
+          <div className="flex">
+            <AgentSelector playerData={playerData} weekId={weekId} />
+          </div>
+        </div>
       </div>
       <div className="m-auto md:m-2 md:mr-3 text-nowrap">
         <div className="flex gap-4">

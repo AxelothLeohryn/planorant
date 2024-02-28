@@ -71,7 +71,6 @@ const Week = ({ weekId, teamData, playersData, refresh }) => {
       };
 
       playersData.forEach((player) => {
-        console.log("Player:", player);
         const playerWeek = player.weeks.find(
           (week) => week.week.toString() === weekId
         );
@@ -97,7 +96,6 @@ const Week = ({ weekId, teamData, playersData, refresh }) => {
         }
       });
 
-      console.log("Availability Count:", availabilityCount);
 
       const calculateAvailability = (available, unavailable) => {
         if (available >= 5) return "dot-success";
@@ -120,7 +118,6 @@ const Week = ({ weekId, teamData, playersData, refresh }) => {
         ),
       };
 
-      console.log("Day Availabilities:", dayAvailabilities);
 
       setDayAvailability(dayAvailabilities);
     }
@@ -157,7 +154,7 @@ const Week = ({ weekId, teamData, playersData, refresh }) => {
                   alt={`${weekData.map} loading screen`}
                 />
               </div>
-              <h3 className="hidden md:flex">
+              <h3 className="hidden sm:flex text-nowrap">
                 {weekData.weekName ? weekData.weekName : null}
               </h3>
             </div>
@@ -226,7 +223,6 @@ const Week = ({ weekId, teamData, playersData, refresh }) => {
           {/* The content inside the card when clicked is inside this div accordion-content */}
           <div className="accordion-content !pt-0">
             <div className="min-h-0">
-              {console.log(playersData)}
               {playersData.map((player) => (
                 <Player
                   playerData={player}

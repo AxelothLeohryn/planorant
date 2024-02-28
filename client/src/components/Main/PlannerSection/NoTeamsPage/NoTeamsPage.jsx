@@ -18,20 +18,28 @@ const NoTeamsPage = ({ setHaveTeam }) => {
       const playerData = await axios.get(`/api/player/username/${userName}`);
       // Get the team that has the key of the invite code
       const teamData = await axios.get(`/api/team/key/${inviteCode}`);
+
       // Add the team to the user
       await axios.put(`/api/player/edit/${playerData.data._id}`, {
         team: teamData.data._id,
       });
+
       // Add the user to the team
       await axios.put(`/api/team/edit/${teamData.data._id}`, {
         players: [...teamData.data.players, playerData.data._id],
       });
-      //Add the weeks of the team to the user
-      for (const weekId of teamData.data.weeks) {
-        await axios.put(`/api/player/edit/${playerData.data._id}`, {
-          weeks: [...playerData.data.weeks, { week: weekId }],
-        });
-      }
+
+      // Collect all week IDs from the team
+      const weekIds = teamData.data.weeks;
+
+      // Add the weeks of the team to the user
+      await axios.put(`/api/player/edit/${playerData.data._id}`, {
+        weeks: [
+          ...playerData.data.weeks,
+          ...weekIds.map((weekId) => ({ week: weekId })),
+        ],
+      });
+
       toast.success(`You have joined the team: ${teamData.data.name}`);
       // Update team status to refresh the PlannerComponent
       setHaveTeam(true);

@@ -75,14 +75,16 @@ const CreateWeekForm = ({ team, teamData, onClose, refresh }) => {
       console.log(response);
       // Add the week to each player in the team
       for (const playerId of teamData.players) {
+        console.log("Getting details from player:", playerId);
         const player = await axios.get(`/api/player/${playerId}`);
         const playerDetails = player.data;
+        console.log("Adding week to player:", playerId);
         await axios.put(`/api/player/edit/${playerId}`, {
           weeks: [...playerDetails.weeks, { week: response.data.data._id }],
         });
       }
       // Add the week to the team
-      console.log(teamData);
+      console.log("Adding week to team:", teamData.name);
       await axios.put(`/api/team/edit/${team}`, {
         weeks: [...teamData.weeks, response.data.data._id],
       });

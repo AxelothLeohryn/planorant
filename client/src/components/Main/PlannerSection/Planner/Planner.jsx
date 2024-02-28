@@ -58,10 +58,11 @@ const Planner = ({ setHaveTeam }) => {
   }, [team, refresh]);
 
   const handleDeleteTeam = async () => {
-    // Delete each player associated with the team
+    // Delete each player associated with the team and its weeks (right now we are considering only 1 team per player)
     for (const playerId of teamData.players) {
       await axios.put(`/api/player/edit/${playerId}`, {
         team: null,
+        weeks: [],
       });
     }
 
@@ -146,7 +147,7 @@ const Planner = ({ setHaveTeam }) => {
             </div>
             <div
               style={{ visibility: isHovered ? "visible" : "hidden" }}
-              className="[&>*>*]:text-xs [&>*>*]:text-red-8 mr-5 absolute -right-3 top-3 md:flex"
+              className="[&>*>label]:text-red-8 mr-5 absolute -right-3 top-3 md:flex"
             >
               <DeleteTeamComponent
                 teamData={teamData}
@@ -155,7 +156,7 @@ const Planner = ({ setHaveTeam }) => {
             </div>
           </div>
         </section>
-        <section className="ml-5 my-4">
+        <section className="ml-3 md:ml-5 my-4">
           {teamData.weeks.map((week, index) => (
             <Week
               key={index}

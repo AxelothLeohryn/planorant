@@ -24,7 +24,9 @@ export const AuthProvider = ({ children }) => {
   const [userName, setUserName] = useState(
     JSON.parse(localStorage.getItem("userName")) || ""
   );
-  const [team, setTeam] = useState(null);
+  const [team, setTeam] = useState(
+    JSON.parse(localStorage.getItem("team")) || ""
+  );
 
   useEffect(() => {
     // Persist isAuthenticated to localStorage whenever it changes

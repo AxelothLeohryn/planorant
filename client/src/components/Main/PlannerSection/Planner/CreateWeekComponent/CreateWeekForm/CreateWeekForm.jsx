@@ -10,7 +10,7 @@ import Button from "@mui/material/Button";
 import { set } from "mongoose";
 import WeekPicker from "./ButtonDatePicker/ButtonDatePicker";
 
-const CreateWeekForm = ({ team, teamData, onClose, refresh }) => {
+const CreateWeekForm = ({ team, teamData, onClose, toggleRefresh }) => {
   const [season, setSeason] = useState("");
   const [weekName, setWeekName] = useState("");
   const [map, setMap] = useState("");
@@ -61,6 +61,12 @@ const CreateWeekForm = ({ team, teamData, onClose, refresh }) => {
     e.preventDefault();
     // setIsLoading(true);
 
+    // Check if all three days are selected
+    if (!thursday || !saturday || !sunday) {
+      toast.error("Please select all three days.");
+      return;
+    }
+
     try {
       //Create a week
       const response = await axios.post("/api/week/create", {
@@ -95,7 +101,7 @@ const CreateWeekForm = ({ team, teamData, onClose, refresh }) => {
       toast.success(`Week ${weekName} created.`);
       //Close the modal
       onClose();
-      refresh();
+      toggleRefresh();
     } catch (error) {
       console.error(error);
       toast.error("Failed to create week.");
@@ -257,7 +263,7 @@ const CreateWeekForm = ({ team, teamData, onClose, refresh }) => {
                     ? "Sunday"
                     : dayjs(sunday).format("DD/MM/YYYY")
                 }
-                value={sunday ? dayjs(sunday) : null} // Ensure Day.js object is passed if date is not null
+                value={sunday ? dayjs(sunday) : null}
                 onChange={handleSundayChange}
                 disablePast={true}
               />
@@ -269,8 +275,9 @@ const CreateWeekForm = ({ team, teamData, onClose, refresh }) => {
               name="week-map-select"
               id="week-map-select"
               required
+              defaultValue=""
             >
-              <option value="" disabled selected>
+              <option value="" disabled>
                 Select Map
               </option>
               {maps.map((map, index) => (
@@ -279,6 +286,7 @@ const CreateWeekForm = ({ team, teamData, onClose, refresh }) => {
                 </option>
               ))}
             </select>
+
             <span className="italic text-gray-500 text-sm font-light mt-2 translate-y-2">
               Create a new Valoplant strategy{" "}
               <a

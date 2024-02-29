@@ -3,7 +3,7 @@ import axios from "axios";
 import DeleteWeekComponent from "./DeleteWeekComponent/DeleteWeekComponent";
 import Player from "./Player/Player";
 
-const Week = ({ weekId, teamData, playersData, refresh }) => {
+const Week = ({ weekId, teamData, playersData, toggleRefresh }) => {
   const [weekData, setWeekData] = useState(null);
   const [isHovered, setIsHovered] = useState(false);
   const [dayAvailability, setDayAvailability] = useState({
@@ -42,7 +42,7 @@ const Week = ({ weekId, teamData, playersData, refresh }) => {
 
     //Delete the week
     await axios.delete(`/api/week/delete/${weekId}`);
-    refresh();
+    toggleRefresh();
   };
   const refreshComponent = () => {
     setRefreshTrigger(prev => !prev); // Toggle the state to force re-render

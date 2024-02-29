@@ -2,8 +2,6 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { set } from "mongoose";
 
-
-
 const AuthContext = createContext();
 
 // Avoid the need to use useContext(AuthContext) directly in every component, just use useAuth() instead.
@@ -24,7 +22,9 @@ export const AuthProvider = ({ children }) => {
   const [userName, setUserName] = useState(
     JSON.parse(localStorage.getItem("userName")) || ""
   );
-  const [team, setTeam] = useState(null);
+  const [team, setTeam] = useState(
+    JSON.parse(localStorage.getItem("team")) || ""
+  );
 
   useEffect(() => {
     // Persist isAuthenticated to localStorage whenever it changes

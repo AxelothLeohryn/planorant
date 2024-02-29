@@ -33,7 +33,7 @@ const CreateUser = () => {
   };
   return (
     <>
-      <div className="flex flex-col w-full max-w-sm gap-6 mx-auto my-12">
+      <main className="flex flex-col w-full max-w-sm gap-6 mx-auto px-4 my-12">
         <div className="flex flex-col items-center">
           <h1 className="text-3xl font-semibold">Welcome to Planorant!</h1>
         </div>
@@ -80,7 +80,7 @@ const CreateUser = () => {
             </a>
           </div>
         </div>
-      </div>
+      </main>
     </>
   );
 };

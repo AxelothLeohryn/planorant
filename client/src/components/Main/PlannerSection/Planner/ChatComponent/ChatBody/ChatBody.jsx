@@ -6,7 +6,7 @@ const ChatBody = ({ messages, playersData, lastMessageRef }) => {
       <div>
         {messages.map((message, index) => {
           const isCurrentUserMessage =
-            message.name === localStorage.getItem("userName").replace(/"/g, "");
+            message.name === localStorage.getItem("userName").replace(/"/g, "") || message.username === localStorage.getItem("userName").replace(/"/g, "");
           const chatAlignment = isCurrentUserMessage
             ? "justify-end text-right"
             : "justify-start text-left";
@@ -23,7 +23,7 @@ const ChatBody = ({ messages, playersData, lastMessageRef }) => {
                 <div className="chat-image avatar flex-shrink-0 mr-2">
                   <div className="w-10 h-10 rounded-full overflow-hidden">
                     {playersData.map((player) => {
-                      if (player.username === message.name) {
+                      if (player.username === message.name || player.username === message.username) {
                         return (
                           <>
                             <div className="avatar border border-2 border-border">

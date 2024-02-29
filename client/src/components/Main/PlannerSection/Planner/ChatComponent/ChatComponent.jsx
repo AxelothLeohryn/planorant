@@ -17,26 +17,49 @@ const ChatComponent = ({ playersData }) => {
   useEffect(() => {
     const newSocket = socketIO.connect("http://localhost:5000");
     setSocket(newSocket);
-
+  
     // Emit the newUser event immediately after connecting
     newSocket.emit("newUser", { userName, socketID: newSocket.id, teamId: playersData[0].team });
     console.log("Sending new user to server", userName);
-
+  
+    // Request historical messages for the team
+    // Make sure the teamId is available
+    if (playersData.length > 0) {
+      newSocket.emit("requestMessages", { teamId: playersData[0].team });
+    }
+  
     // Setup listener for incoming messages
     newSocket.on("messageResponse", (data) => {
       setMessages((prevMessages) => [...prevMessages, data]);
     });
-
+  
     // Return a cleanup function that disconnects the socket
     // when the component unmounts
     return () => {
       console.log("User disconnected", userName);
       newSocket.disconnect();
     };
-  }, [userName]); // Only reconnect when userName changes
+  }, [userName, playersData]); // Include playersData in the dependency array
 
   useEffect(() => {
-    // Scroll to the bottom every time messages change
+    const handleMessagesHistory = (historicalMessages) => {
+      setMessages(historicalMessages);
+      console.log("Received historical messages", historicalMessages);
+    };
+  
+    if (socket) {
+      socket.on("messagesHistory", handleMessagesHistory);
+    }
+  
+    // Cleanup to avoid memory leaks
+    return () => {
+      if (socket) {
+        socket.off("messagesHistory", handleMessagesHistory);
+      }
+    };
+  }, [socket]);
+
+  useEffect(() => {
     lastMessageRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }, [messages]);
 

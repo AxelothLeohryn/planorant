@@ -9,7 +9,7 @@ import Footer from "./components/Footer/Footer";
 import Authenticate from "./components/Authenticate/Authenticate";
 import CreateUser from "./components/CreateUser/CreateUser";
 import axios from "axios";
-axios.defaults.baseURL = "http://localhost:5000";
+// axios.defaults.baseURL = "http://localhost:5000";
 
 function App() {
   const { isAuthenticated, isNewUser } = useAuth();

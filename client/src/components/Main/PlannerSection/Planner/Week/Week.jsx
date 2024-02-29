@@ -187,7 +187,7 @@ const Week = ({ weekId, teamData, playersData, toggleRefresh }) => {
                 )}
               </div>
               <a
-                className="link link-primary text-sm md:text-base mr-3 md:mr-8"
+                className="link text-sm md:text-base mr-3 md:mr-8"
                 href={weekData.valoplant}
                 target="_blank"
                 rel="noreferrer"

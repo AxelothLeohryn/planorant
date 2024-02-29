@@ -13,9 +13,14 @@ module.exports = (http) => {
     console.log(`⚡: ${socket.id} user just connected!`);
 
     socket.on("message", (data) => {
-      console.log(data);
-      io.emit("messageResponse", data);
-    });
+        // Assuming message data includes { message, teamId }
+        console.log(data);
+        
+        // Emit message only to users of the same team
+        users.filter(u => u.teamId === data.teamId).forEach(user => {
+          io.to(user.socketID).emit("messageResponse", data);
+        });
+      });
 
     // Listens when a new user joins the server
     socket.on("newUser", (data) => {
@@ -23,8 +28,11 @@ module.exports = (http) => {
       console.log("New user received: ", data);
       users.push({ ...data, socketID: socket.id }); // Ensure socketID is added correctly
       console.log("Users list: ", users);
-      // Sends the list of users to the client
-      io.emit("newUserResponse", users);
+
+      // Send the user list to all users in the same team
+  users.filter(u => u.teamId === data.teamId).forEach(user => {
+    io.to(user.socketID).emit("newUserResponse", users.filter(u => u.teamId === data.teamId));
+  });
     });
 
     socket.on("disconnect", () => {

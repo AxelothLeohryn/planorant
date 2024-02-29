@@ -1,38 +1,65 @@
 import React from "react";
 
-const ChatBody = ({ messages }) => {
+const ChatBody = ({ messages, playersData, lastMessageRef }) => {
   return (
     <>
-      {/* <header className="chat__mainHeader">
-        <p>Hangout with Colleagues</p>
-        <button className="leaveChat__btn">LEAVE CHAT</button>
-      </header> */}
+      <div>
+        {messages.map((message, index) => {
+          const isCurrentUserMessage =
+            message.name === localStorage.getItem("userName").replace(/"/g, "");
+          const chatAlignment = isCurrentUserMessage
+            ? "justify-end text-right"
+            : "justify-start text-left";
+          const bubbleColor = isCurrentUserMessage
+            ? "bg-slate-12 text-black"
+            : "bg-border text-white";
 
-      {/*This shows messages sent from you*/}
-      <div className="message__container">
-        {messages.map((message) =>
-          message.name === localStorage.getItem("userName") ? (
-            <div className="message__chats" key={message.id}>
-              <p className="sender__name">You</p>
-              <div className="message__sender">
-                <p>{message.text}</p>
+            const isLastMessage = index === messages.length - 1;
+
+          return (
+            <div key={message.id} className={`flex ${chatAlignment} mb-4`}>
+              {/* Conditionally render the avatar only for messages from others */}
+              {!isCurrentUserMessage && (
+                <div className="chat-image avatar flex-shrink-0 mr-2">
+                  <div className="w-10 h-10 rounded-full overflow-hidden">
+                    {playersData.map((player) => {
+                      if (player.username === message.name) {
+                        return (
+                          <>
+                            <div className="avatar border border-2 border-border">
+                              <img
+                                className="w-full h-full object-cover"
+                                src={player.image}
+                                alt={player.username}
+                                key={player.username}
+                              />
+                            </div>
+                          </>
+                        );
+                      }
+                      return null;
+                    })}
+                  </div>
+                </div>
+              )}
+              <div>
+                <div className="chat-header mb-1">
+                  <span className="font-bold">{message.name}</span>
+                  <time className="text-xs opacity-75 ml-2">
+                    {message.time.slice(0, -3)}
+                  </time>
+                </div>
+                <div className={`chat-bubble p-2 rounded-lg ${bubbleColor} mb-2`}>
+                  {message.text}
+                </div>
+                {/* <div className="chat-footer text-xs opacity-75 mt-1">
+                  {message.footer}
+                </div> */}
               </div>
+              {isLastMessage && <div ref={lastMessageRef} />}
             </div>
-          ) : (
-            <div className="message__chats" key={message.id}>
-              <p>{message.name}</p>
-              <div className="message__recipient">
-                <p>{message.text}</p>
-              </div>
-            </div>
-          )
-        )}
-
-
-        {/*This is triggered when a user is typing*/}
-        {/* <div className="message__status">
-          <p>Someone is typing...</p>
-        </div> */}
+          );
+        })}
       </div>
     </>
   );

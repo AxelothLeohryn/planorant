@@ -80,7 +80,7 @@ const Planner = ({ setHaveTeam }) => {
         <button className="btn mb-4" onClick={toggleShowChat}>
           Show Chat
         </button>
-        {showChat && <ChatComponent />}
+        {showChat && <ChatComponent playersData={playersData} />}
         <Team
           teamData={teamData}
           teamMembersNumber={teamMembersNumber}

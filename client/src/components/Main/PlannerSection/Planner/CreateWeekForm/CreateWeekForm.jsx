@@ -4,9 +4,11 @@ import toast, { Toaster } from "react-hot-toast";
 import dayjs from "dayjs";
 import updateLocale from "dayjs/plugin/updateLocale";
 import { DatePicker } from "@mui/x-date-pickers";
+import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import { createTheme } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import { set } from "mongoose";
+import WeekPicker from "./ButtonDatePicker/ButtonDatePicker";
 
 const CreateWeekForm = ({ team, teamData, onClose, refresh }) => {
   const [season, setSeason] = useState("");
@@ -15,6 +17,7 @@ const CreateWeekForm = ({ team, teamData, onClose, refresh }) => {
   const [thursday, setThursday] = useState(null);
   const [saturday, setSaturday] = useState(null);
   const [sunday, setSunday] = useState(null);
+  const [weekRange, setWeekRange] = useState([null, null]);
   const [valoplant, setValoplant] = useState("");
 
   const [isSeasonInputValid, setIsSeasonInputValid] = useState(true);
@@ -139,7 +142,14 @@ const CreateWeekForm = ({ team, teamData, onClose, refresh }) => {
   const handleValoplantInputChange = (e) => {
     const inputValue = e.target.value;
     setValoplant(inputValue);
-    setIsValoplantInputValid(inputValue.length >= 12 && inputValue.length <= 35);
+    setIsValoplantInputValid(
+      inputValue.length >= 12 && inputValue.length <= 35
+    );
+  };
+
+  const handleWeekRangeChange = (newRange) => {
+    setWeekRange(newRange);
+    // You might want to update other parts of your form/state based on the week selection
   };
 
   // MUI Date Picker inside Button
@@ -276,7 +286,6 @@ const CreateWeekForm = ({ team, teamData, onClose, refresh }) => {
                 href="https://valoplant.gg/"
                 target="_blank"
                 rel="noreferrer"
-
               >
                 here
               </a>
@@ -294,7 +303,6 @@ const CreateWeekForm = ({ team, teamData, onClose, refresh }) => {
               maxLength={35}
               onChange={handleValoplantInputChange}
             />
-            
           </div>
         </div>
 

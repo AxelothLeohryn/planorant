@@ -41,7 +41,7 @@ const Header = () => {
                           : "text-base dropdown-item"
                       }
                     >
-                      Profile
+                      Profile (WIP)
                     </NavLink>
                     <NavLink
                       to="/invites"
@@ -51,7 +51,7 @@ const Header = () => {
                           : "text-base dropdown-item"
                       }
                     >
-                      Invites
+                      Invites (WIP)
                     </NavLink>
                     {/* <a tabindex="-1" className="text-sm dropdown-item">
                     Account settings
@@ -80,6 +80,9 @@ const Header = () => {
               Profile
             </NavLink>
           </div> */}
+          <div className="navbar-center">
+            <h2 className="text-red-8 italic">Planorant is a work in progress.</h2>
+          </div>
         </nav>
       </header>
     </>

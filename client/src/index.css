@@ -3,8 +3,12 @@
 @tailwind utilities;
 
 :root {
-    color-scheme: light;
+    color-scheme: dark;
     font-family: "DIN";
+    background-color: #161616;
+}
+header {
+    background-color: #161616;
 }
 
 @font-face {

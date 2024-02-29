@@ -2,8 +2,6 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { set } from "mongoose";
 
-
-
 const AuthContext = createContext();
 
 // Avoid the need to use useContext(AuthContext) directly in every component, just use useAuth() instead.

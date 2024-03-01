@@ -1,15 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
+import { motion, AnimatePresence } from 'framer-motion';
 
 const AgentSelector = ({ playerData, weekId }) => {
   const [selectedAgents, setSelectedAgents] = useState(
     playerData.weeks.find((w) => w.week.toString() === weekId)?.agents || []
   );
   const [showSelector, setShowSelector] = useState(false);
-  const [selectorPosition, setSelectorPosition] = useState({
-    top: "auto",
-    bottom: "auto",
-  });
+  
 
   const selectorRef = useRef(null);
 
@@ -171,10 +169,14 @@ const AgentSelector = ({ playerData, weekId }) => {
         )}
       </div>
       {showSelector && (
-        <div
-          className={`absolute inset-x-0 md:left-[28%] max-w-[420px] px-4 z-50 `}
-          ref={selectorRef}
-        >
+        <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -20 }}
+        transition={{ duration: 0.3 }}
+        className="absolute inset-x-0 md:left-[28%] max-w-[420px] px-4 z-50"
+        ref={selectorRef}
+      >
           <div className="flex flex-col bg-backgroundSecondary border-border rounded-xl shadow-lg z-50 max-h-96 overflow-y-scroll hide-scrollbar">
             <button
               className="btn btn-sm btn-circle btn-ghost absolute right-5 top-2"
@@ -210,7 +212,7 @@ const AgentSelector = ({ playerData, weekId }) => {
               ))}
             </div>
           </div>
-        </div>
+        </motion.div>
       )}
     </>
   );

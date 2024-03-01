@@ -20,6 +20,7 @@
     "autoprefixer": "^10.4.17",
     "axios": "^1.6.7",
     "dayjs": "^1.11.10",
+    "framer-motion": "^11.0.8",
     "jwt-decode": "^4.0.0",
     "postcss": "^8.4.35",
     "react": "^18.2.0",

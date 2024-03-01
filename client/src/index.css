@@ -3,10 +3,16 @@
 @tailwind utilities;
 
 :root {
-    color-scheme: dark;
+    color-scheme: only light;
     font-family: "DIN";
     background-color: #161616;
 }
+.qJTHM {
+    color: #161616;
+}
+
+
+
 header {
     background-color: #161616;
 }

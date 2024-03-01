@@ -55,7 +55,7 @@ const ChatBody = ({ messages, playersData, lastMessageRef }) => {
                   </div>
                 </div>
               )}
-              <div className="flex flex-col justify-end items-end">
+              <div className="items-end">
                 <div className="chat-header mb-1">
                   <span className="font-bold">{message.name}</span>
                   <time className="text-xs opacity-75 ml-2">{messageTime}</time>

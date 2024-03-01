@@ -30,7 +30,7 @@ const ChatBody = ({ messages, playersData, lastMessageRef }) => {
             <div key={message.id} className={`flex ${chatAlignment} mb-4`}>
               {/* Conditionally render the avatar only for messages from others */}
               {!isCurrentUserMessage && (
-                <div className="chat-image avatar flex-shrink-0 mr-2">
+                <div className="avatar flex-shrink-0 mr-2">
                   <div className="w-10 h-10 rounded-full overflow-hidden">
                     {playersData.map((player) => {
                       if (
@@ -55,13 +55,13 @@ const ChatBody = ({ messages, playersData, lastMessageRef }) => {
                   </div>
                 </div>
               )}
-              <div>
+              <div className="flex flex-col justify-end items-end">
                 <div className="chat-header mb-1">
                   <span className="font-bold">{message.name}</span>
                   <time className="text-xs opacity-75 ml-2">{messageTime}</time>
                 </div>
                 <div
-                  className={`chat-bubble p-2 rounded-lg ${bubbleColor} mb-2`}
+                  className={`w-fit p-2 rounded-lg ${bubbleColor} mb-2`}
                 >
                   {message.text}
                 </div>

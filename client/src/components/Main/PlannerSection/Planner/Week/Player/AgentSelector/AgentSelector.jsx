@@ -120,12 +120,12 @@ const AgentSelector = ({ playerData, weekId }) => {
           return (
             <div
               key={index}
-              className="avatar md:avatar-xl rounded-full border-2 border-content2"
+              className="avatar md:avatar-xl rounded-full border-2 border-content1"
             >
               <img src={agent.image} alt={agent.name} />
               <button
                 onClick={() => removeAgent(agent)}
-                className="absolute -top-1 -right-2 bg-border text-white rounded-full size-5 hover:scale-125 transition duration-150 flex items-center justify-center text-xs z-20"
+                className="absolute -top-1 -right-2 bg-backgroundPrimary text-content1 rounded-full size-5 hover:scale-125 transition duration-150 flex items-center justify-center text-xs z-20"
                 aria-label={`Remove ${agent.name}`}
               >
                 <svg
@@ -148,7 +148,7 @@ const AgentSelector = ({ playerData, weekId }) => {
         })}
         {selectedAgents.length < 3 && (
           <button
-            className="avatar md:avatar-xl rounded-full overflow-hidden bg-backgroundSecondary flex items-center justify-center "
+            className="avatar md:avatar-xl rounded-full overflow-hidden bg-border flex items-center justify-center "
             onClick={() => setShowSelector(!showSelector)}
           >
             <span>
@@ -175,7 +175,7 @@ const AgentSelector = ({ playerData, weekId }) => {
           className={`absolute inset-x-0 md:left-[28%] max-w-[420px] px-4 z-50 `}
           ref={selectorRef}
         >
-          <div className="flex flex-col bg-backgroundSecondary border-border rounded-xl shadow-lg z-50 max-h-96 overflow-y-scroll hide-scrollbar">
+          <div className="flex flex-col bg-border border border-content3 rounded-xl shadow-lg z-50 max-h-96 overflow-y-scroll hide-scrollbar">
             <button
               className="btn btn-sm btn-circle btn-ghost absolute right-5 top-2"
               onClick={() => setShowSelector(false)}
@@ -196,10 +196,11 @@ const AgentSelector = ({ playerData, weekId }) => {
               </svg>
             </button>
             <div className="p-4">
+              <p className="text-xl">Choose a prefered Agent</p>
               {allAgents.map((agent) => (
                 <div
                   key={agent.id}
-                  className="flex items-center gap-2 p-2 hover:bg-content3 rounded cursor-pointer"
+                  className="flex items-center gap-2 p-2 hover:bg-content3 hover:scale-105 transition  rounded cursor-pointer"
                   onClick={() => addAgent(agent)}
                 >
                   <div className="avatar w-10 h-10 rounded-full overflow-hidden">

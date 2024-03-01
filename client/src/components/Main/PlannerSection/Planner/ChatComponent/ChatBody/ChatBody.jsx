@@ -14,8 +14,8 @@ const ChatBody = ({ messages, playersData, lastMessageRef }) => {
             ? "justify-end text-right"
             : "justify-start text-left";
           const bubbleColor = isCurrentUserMessage
-            ? "bg-slate-12 text-black"
-            : "bg-border text-white";
+            ? "bg-content1 text-backgroundPrimary"
+            : "bg-backgroundPrimary text-content1";
 
           const isLastMessage = index === messages.length - 1;
 
@@ -39,7 +39,7 @@ const ChatBody = ({ messages, playersData, lastMessageRef }) => {
                       ) {
                         return (
                           <>
-                            <div className="avatar border border-2 border-border">
+                            <div className="avatar border-2 border-border">
                               <img
                                 className="w-full h-full object-cover"
                                 src={player.image}

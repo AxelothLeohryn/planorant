@@ -139,7 +139,7 @@ const Week = ({ weekId, teamData, playersData, toggleRefresh }) => {
           {/* {The actual content of the week card is in the label} */}
           <label
             htmlFor={`accordion-${weekData._id}`}
-            className="accordion-title flex-row items-center justify-between gap-2 md:gap-4 p-0 bg-[#232323] hover:bg-border rounded "
+            className="accordion-title flex-row items-center justify-between gap-2 md:gap-4 p-0 bg-backgroundSecondary hover:bg-border rounded "
           >
             {/* <button className=" [&>*>*]:text-xs [&>*>*]:text-red-8 mr-5 absolute -right-3 bottom-2 md:hidden hover:scale-110 transition-transform duration-300 ease-in-out">
               <DeleteWeekComponent
@@ -212,7 +212,7 @@ const Week = ({ weekId, teamData, playersData, toggleRefresh }) => {
 
             <div
               style={{ visibility: isHovered ? "visible" : "hidden" }}
-              className="[&>*>*]:text-xs [&>*>*]:text-red-8 mr-5 absolute -right-3 top-3 md:flex"
+              className="[&>*>*]:text-xs [&>*>*]:text-primary mr-5 absolute -right-3 top-3 md:flex"
             >
               <DeleteWeekComponent
                 weekName={weekData.weekName}

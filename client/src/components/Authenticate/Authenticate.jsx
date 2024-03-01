@@ -15,9 +15,9 @@ const Authenticate = () => {
           alt="Background"
         />
         <div className="flex flex-col justify-center items-center max-h-screen max-w-screen relative z-10 text-center">
-          <h1 className="text-5xl lg:text-7xl font-valorant">PLANORANT</h1>
+          <h1 className="text-5xl lg:text-7xl font-valorant text-white">PLANORANT</h1>
           <div className="flex flex-row gap-2">
-            <h2 className="mb-6 font-bold font-DIN">
+            <h2 className="mb-6 font-bold font-DIN text-white">
               Valorant Premier Planner
             </h2>
             <img className="size-5" src="/Premier.webp" alt="Premier Logo" />

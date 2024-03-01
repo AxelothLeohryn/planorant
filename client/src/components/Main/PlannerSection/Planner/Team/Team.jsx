@@ -4,9 +4,14 @@ import { useAuth } from "../../../../../context/AuthContext";
 import axios from "axios";
 import Week from "../Week/Week";
 
-const Team = ({teamMembersNumber, teamData, playersData, handleDeleteTeam, toggleRefresh}) => {
+const Team = ({
+  teamMembersNumber,
+  teamData,
+  playersData,
+  handleDeleteTeam,
+  toggleRefresh,
+}) => {
   const [isHovered, setIsHovered] = useState(false);
-
 
   return (
     <>
@@ -15,11 +20,11 @@ const Team = ({teamMembersNumber, teamData, playersData, handleDeleteTeam, toggl
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <div className="relative flex-row flex-nowrap md:flex md:items-center md:justify-between bg-[#232323] p-5 rounded">
+        <div className="relative flex-row flex-nowrap md:flex md:items-center md:justify-between bg-backgroundSecondary p-5 rounded">
           <div className="min-w-0  mb-2">
-            <h2 className="text-2xl font-bold leading-7 text-white sm:truncate sm:text-3xl sm:tracking-tight">
+            <h2 className="text-2xl font-bold leading-7 text-content1 sm:truncate sm:text-3xl sm:tracking-tight">
               {teamData.name}{" "}
-              <span className="text-2xl font-bold leading-7 text-gray-500 sm:truncate sm:text-xl sm:tracking-tight">
+              <span className="text-2xl font-bold leading-7 text-content2 sm:truncate sm:text-xl sm:tracking-tight">
                 #{teamData.tag}
               </span>
             </h2>
@@ -29,10 +34,11 @@ const Team = ({teamMembersNumber, teamData, playersData, handleDeleteTeam, toggl
                   {playersData.map((player) => (
                     <div key={player.username} className="popover-hover">
                       <label
-                        className="avatar my-2 popover-trigger hover:scale-110 transiiton duration-300"
+                        className="avatar my-2 popover-trigger hover:scale-110 transition duration-300"
                         tabIndex="0"
                       >
-                        <img className="" src={player.image} alt="avatar" />
+                        {/* <img className="" src={player.image} alt="avatar" /> */}
+                        <p className="text-lg text-primary">{player.username.slice(0,2)}</p>
                       </label>
                       <div className="popover-content w-fit px-5">
                         <div className="popover-arrow"></div>
@@ -41,12 +47,15 @@ const Team = ({teamMembersNumber, teamData, playersData, handleDeleteTeam, toggl
                     </div>
                   ))}
                 </div>
-                <div className="flex items-center text-sm text-gray-500 mb-2 md:mb-0">
+                <div className="flex items-center text-sm text-content2 gap-4 mb-2 md:mb-0">
+                  <div className="flex items-center justify-center">
+
+                  
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                     fill="currentColor"
-                    className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400"
+                    className="mr-1.5 h-5 w-5 flex-shrink-0 text-content2"
                   >
                     <path
                       fillRule="evenodd"
@@ -55,29 +64,30 @@ const Team = ({teamMembersNumber, teamData, playersData, handleDeleteTeam, toggl
                     />
                   </svg>
                   {teamMembersNumber}/7 members
-                </div>
-              </div>
-              <div className="flex items-center text-sm text-gray-500">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M8.25 3.75H19.5a.75.75 0 0 1 .75.75v11.25a.75.75 0 0 1-1.5 0V6.31L5.03 20.03a.75.75 0 0 1-1.06-1.06L17.69 5.25H8.25a.75.75 0 0 1 0-1.5Z"
-                    clipRule="evenodd"
-                  />
-                </svg>
+                  </div>
+                  <div className="flex items-center text-sm text-content2">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      className="mr-1.5 h-5 w-5 flex-shrink-0 text-content2"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M8.25 3.75H19.5a.75.75 0 0 1 .75.75v11.25a.75.75 0 0 1-1.5 0V6.31L5.03 20.03a.75.75 0 0 1-1.06-1.06L17.69 5.25H8.25a.75.75 0 0 1 0-1.5Z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
 
-                {teamData.key}
+                    {teamData.key}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
           <div
             style={{ visibility: isHovered ? "visible" : "hidden" }}
-            className="[&>*>label]:text-red-8 mr-5 absolute -right-3 top-3 md:flex"
+            className="[&>*>label]:text-primary mr-5 absolute -right-3 top-3 md:flex"
           >
             <DeleteTeamComponent
               teamData={teamData}

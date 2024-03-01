@@ -172,7 +172,7 @@ const CreateWeekForm = ({ team, teamData, onClose, toggleRefresh }) => {
     return (
       <Button
         variant="outlined"
-        color="error"
+        color="inherit"
         id={id}
         disabled={disabled}
         ref={ref}
@@ -214,7 +214,7 @@ const CreateWeekForm = ({ team, teamData, onClose, toggleRefresh }) => {
               placeholder="WEEK NAME"
               type="text"
               className={`input rounded-none max-w-full ${
-                !isWeekInputValid ? "invalid:border-red-900" : ""
+                !isWeekInputValid ? "invalid:border-primary" : ""
               } transition`}
               minLength={5}
               maxLength={30}
@@ -273,10 +273,10 @@ const CreateWeekForm = ({ team, teamData, onClose, toggleRefresh }) => {
               ))}
             </select>
 
-            <span className="italic text-gray-500 text-sm font-light mt-2 translate-y-2">
+            <span className="italic text-content2 text-sm font-light mt-2 translate-y-2">
               Create a new Valoplant strategy{" "}
               <a
-                className="link text-red-8 text-sm"
+                className="link text-primary text-sm"
                 href="https://valoplant.gg/"
                 target="_blank"
                 rel="noreferrer"
@@ -290,7 +290,7 @@ const CreateWeekForm = ({ team, teamData, onClose, toggleRefresh }) => {
               placeholder="Valoplant URL"
               type="text"
               className={`input rounded-none max-w-full ${
-                !isValoplantInputValid ? "invalid:border-red-900" : ""
+                !isValoplantInputValid ? "invalid:border-primary" : ""
               } transition`}
               required
               minLength={12}
@@ -301,7 +301,7 @@ const CreateWeekForm = ({ team, teamData, onClose, toggleRefresh }) => {
         </div>
       </div>
       <div className="flex gap-3 mt-8">
-        <button type="submit" className="btn btn-primary btn-block bg-red-7">
+        <button type="submit" className="btn btn-primary btn-block">
           CONFIRM
         </button>
 

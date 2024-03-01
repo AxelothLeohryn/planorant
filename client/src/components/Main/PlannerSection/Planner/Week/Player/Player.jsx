@@ -79,10 +79,11 @@ const Player = ({ playerData, weekId, onAvailabilityChange }) => {
   };
 
   return (
-    <article className="flex flex-col md:flex-row flex-wrap items-center justify-start md:justify-between gap-2 md:gap-4 px-4 ml-1 md:ml-7 bg-[#232323] hover:bg-border rounded">
+    <article className="flex flex-col md:flex-row flex-wrap items-center justify-start md:justify-between gap-2 md:gap-4 px-4 ml-1 md:ml-7 bg-backgroundSecondary hover:bg-border rounded">
       <div className="flex flex-row w-full pt-4 md:pt-0 md:w-fit items-center gap-3 md:gap-4">
-        <div className="avatar md:avatar-xl border border-content3">
-          <img src={playerData.image} alt={`${playerData.username} avatar`} />
+        <div className="avatar md:avatar-xl">
+          {/* <img src={playerData.image} alt={`${playerData.username} avatar`} /> */}
+          <p className="text-xl text-primary">{playerData.username.slice(0,2)}</p>
         </div>
         <div className="flex justify-between items-center gap-6">
           <h3 className="text-lg md:text-xl font-bold text-nowrap">

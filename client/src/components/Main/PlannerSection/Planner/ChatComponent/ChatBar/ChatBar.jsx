@@ -21,7 +21,7 @@ const ChatBar = ({ socket, playersData }) => {
   return (
     <div className="md:w-1/3">
       <h4>ACTIVE USERS</h4>
-      <div className="bg-backgroundPrimary p-4 rounded">
+      <div className="bg-border p-4 rounded">
         <div className="flex flex-col gap-3">
           {users.map((user) => (
             <div className="flex items-end gap-2" key={user.socketID}>

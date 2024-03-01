@@ -70,8 +70,8 @@ const ChatComponent = ({ playersData }) => {
   return (
     <div className="w-full bg-backgroundSecondary p-5 flex flex-col md:flex-row gap-4">
       <ChatBar playersData={playersData} socket={socket} />
-      <div className="md:w-3/4 h-[57vh] md:h-[50vh] flex flex-col">
-        <div className="overflow-y-scroll flex-grow bg-gray-3 border border-border rounded p-5">
+      <div className="md:w-3/4 h-[57vh] md:h-[50vh] flex flex-col border border-content3 rounded">
+        <div className="overflow-y-scroll flex-grow bg-border p-5">
           <ChatBody
             lastMessageRef={lastMessageRef}
             playersData={playersData}

@@ -3,19 +3,11 @@
 @tailwind utilities;
 
 :root {
-    color-scheme: only light;
+    color-scheme: light dark;
     font-family: "DIN";
-    background-color: #161616;
-}
-.qJTHM {
-    color: #161616;
 }
 
 
-
-header {
-    background-color: #161616;
-}
 
 @font-face {
     font-family: 'Valorant';

@@ -12,14 +12,31 @@ export default {
   plugins: [
     require("rippleui")({
       // defaultStyle: false,
-      removeThemes: ["light"],
+      removeThemes: [""],
       themes: [
         {
           themeName: "dark",
+          
           colors: {
             primary: "#e74a39",
           },
         },
+        {
+          themeName: "light",
+          
+          colors: {
+            primary: "#e74a39",
+          },
+        },
+        // {
+        //   themeName: "custom",
+        //   colorScheme: "light",
+        //   prefersColorScheme: true,
+        //   colors: {
+        //     primary: "#ffb800",
+        //     backgroundPrimary: "#583533",
+        //   },
+        // },
       ],
     }),
   ],

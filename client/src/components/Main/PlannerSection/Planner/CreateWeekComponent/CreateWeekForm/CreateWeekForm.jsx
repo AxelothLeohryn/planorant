@@ -208,20 +208,6 @@ const CreateWeekForm = ({ team, teamData, onClose, toggleRefresh }) => {
         </div>
         <div className="form-group">
           <div className="form-field">
-            {/* <label htmlFor="week-season-input" className="form-label"></label>
-            <input
-              id="week-season-input"
-              placeholder="SEASON"
-              type="text"
-              className={`input rounded-none max-w-full ${
-                !isSeasonInputValid ? "invalid:border-red-900" : ""
-              } transition`}
-              minLength={5}
-              maxLength={15}
-              required
-              onChange={handleSeasonInputChange}
-            />
-             */}
             <label htmlFor="week-name-input" className="form-label"></label>
             <input
               id="week-name-input"
@@ -313,28 +299,6 @@ const CreateWeekForm = ({ team, teamData, onClose, toggleRefresh }) => {
             />
           </div>
         </div>
-
-        {/* <div className="form-group">
-          <div className="form-field">
-            <label htmlFor="team-tag-input" className="form-label"></label>
-            <input
-              id="team-tag-input"
-              placeholder="#TEAM TAG"
-              type="text"
-              className={`input rounded-none max-w-full ${
-                !isTagInputValid ? "invalid:border-red-900" : ""
-              } transition`}
-              minLength={1}
-              maxLength={5}
-              onChange={handleTagInputChange}
-            />
-            {!isTagInputValid && (
-              <p className="text-red-8 text-sm absolute top-[220px]">
-                1-5 CHARACTER LIMIT
-              </p>
-            )}
-          </div>
-        </div> */}
       </div>
       <div className="flex gap-3 mt-8">
         <button type="submit" className="btn btn-primary btn-block bg-red-7">

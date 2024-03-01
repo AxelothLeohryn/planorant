@@ -15,12 +15,13 @@ const ChatComponent = ({ playersData }) => {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
+    //REMOVE LOCALHOST, LEAVE EMPTY IN PRODUCTION
     const newSocket = socketIO.connect();
     setSocket(newSocket);
   
     // Emit the newUser event immediately after connecting
     newSocket.emit("newUser", { userName, socketID: newSocket.id, teamId: playersData[0].team });
-    console.log("Sending new user to server", userName);
+    // console.log("Sending new user to server", userName);
   
     // Request historical messages for the team
     // Make sure the teamId is available
@@ -36,7 +37,7 @@ const ChatComponent = ({ playersData }) => {
     // Return a cleanup function that disconnects the socket
     // when the component unmounts
     return () => {
-      console.log("User disconnected", userName);
+      // console.log("User disconnected", userName);
       newSocket.disconnect();
     };
   }, [userName, playersData]); // Include playersData in the dependency array
@@ -44,7 +45,7 @@ const ChatComponent = ({ playersData }) => {
   useEffect(() => {
     const handleMessagesHistory = (historicalMessages) => {
       setMessages(historicalMessages);
-      console.log("Received historical messages", historicalMessages);
+      // console.log("Received historical messages", historicalMessages);
     };
   
     if (socket) {

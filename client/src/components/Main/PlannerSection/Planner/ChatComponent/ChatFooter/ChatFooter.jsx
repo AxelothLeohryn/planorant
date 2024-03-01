@@ -19,7 +19,7 @@ const ChatFooter = ({ socket, playersData }) => {
         name: userName,
         image: user.image,
         senderId: user._id, // Assign the _id of the user as senderId
-        time: new Date().toLocaleTimeString(),
+        time: new Date(),
         id: `${socket.id}${Math.random()}`, // Unique identifier for the message
         socketID: socket.id,
         teamId: playersData[0].team, // Assuming the teamId is the same for all playersData[0].team

@@ -16,6 +16,9 @@ const ChatBody = ({ messages, playersData, lastMessageRef }) => {
 
             const isLastMessage = index === messages.length - 1;
 
+            // Convert message.time to a Date object and format it
+          const messageTime = new Date(message.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
           return (
             <div key={message.id} className={`flex ${chatAlignment} mb-4`}>
               {/* Conditionally render the avatar only for messages from others */}
@@ -46,7 +49,7 @@ const ChatBody = ({ messages, playersData, lastMessageRef }) => {
                 <div className="chat-header mb-1">
                   <span className="font-bold">{message.name}</span>
                   <time className="text-xs opacity-75 ml-2">
-                    {message.time.slice(0, -3)}
+                    {messageTime}
                   </time>
                 </div>
                 <div className={`chat-bubble p-2 rounded-lg ${bubbleColor} mb-2`}>

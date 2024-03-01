@@ -6,7 +6,7 @@ module.exports = (http) => {
 
   const io = socketIO(http, {
     cors: {
-      origin: "https://planorant.onrender.com/:5173",
+      origin: "http://localhost:5173",
     },
   });
 

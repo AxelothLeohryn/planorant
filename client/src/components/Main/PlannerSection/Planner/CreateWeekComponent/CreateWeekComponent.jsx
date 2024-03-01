@@ -11,7 +11,7 @@ const CreateWeekComponent = ( {team, teamData, toggleRefresh}) => {
       <button
         type="button"
         onClick={toggleWeekModal}
-        className="gap-1 flex items-center justify-center transition btn btn-primary btn-xl bg-red-7 hover:bg-red-8 duration-100"
+        className="gap-1 flex items-center justify-center transition btn btn-primary btn-xl bg-red-7 hover:bg-red-8 duration-100 mb-5"
       >
         Add a Premier Week
         <svg

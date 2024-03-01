@@ -79,13 +79,13 @@ const Player = ({ playerData, weekId, onAvailabilityChange }) => {
   };
 
   return (
-    <article className="flex flex-col md:flex-row flex-wrap items-center justify-start md:justify-between gap-4 p-4 ml-1 md:ml-7 bg-[#232323] hover:bg-border rounded">
-      <div className="flex flex-row w-full md:w-fit items-center gap-4">
-        <div className="avatar avatar-xl border border-content3">
+    <article className="flex flex-col md:flex-row flex-wrap items-center justify-start md:justify-between gap-2 md:gap-4 px-4 ml-1 md:ml-7 bg-[#232323] hover:bg-border rounded">
+      <div className="flex flex-row w-full pt-4 md:pt-0 md:w-fit items-center gap-3 md:gap-4">
+        <div className="avatar md:avatar-xl border border-content3">
           <img src={playerData.image} alt={`${playerData.username} avatar`} />
         </div>
         <div className="flex justify-between items-center gap-6">
-          <h3 className="text-xl font-bold text-nowrap">
+          <h3 className="text-lg md:text-xl font-bold text-nowrap">
             {playerData.username}
           </h3>
           <div className="flex">
@@ -106,7 +106,7 @@ const Player = ({ playerData, weekId, onAvailabilityChange }) => {
               }`}
               onClick={() => toggleAvailability("THU")}
             ></button>
-            <p>THU</p>
+            <p className="text-sm md:text-base">THU</p>
           </div>
           <div className="flex flex-col items-center justify-center gap-2">
             <button
@@ -119,7 +119,7 @@ const Player = ({ playerData, weekId, onAvailabilityChange }) => {
               }`}
               onClick={() => toggleAvailability("SAT")}
             ></button>
-            <p>SAT</p>
+            <p className="text-sm md:text-base">SAT</p>
           </div>
           <div className="flex flex-col items-center justify-center gap-2">
             <button
@@ -132,7 +132,7 @@ const Player = ({ playerData, weekId, onAvailabilityChange }) => {
               }`}
               onClick={() => toggleAvailability("SUN")}
             ></button>
-            <p>SUN</p>
+            <p className="text-sm md:text-base">SUN</p>
           </div>
         </div>
       </div>

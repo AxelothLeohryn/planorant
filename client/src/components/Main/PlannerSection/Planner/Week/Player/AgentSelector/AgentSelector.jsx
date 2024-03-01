@@ -6,11 +6,17 @@ const AgentSelector = ({ playerData, weekId }) => {
     playerData.weeks.find((w) => w.week.toString() === weekId)?.agents || []
   );
   const [showSelector, setShowSelector] = useState(false);
+  const [selectorPosition, setSelectorPosition] = useState({
+    top: "auto",
+    bottom: "auto",
+  });
+
   const selectorRef = useRef(null);
 
   const allAgents = [
     { id: "astra", name: "Astra", image: "/agent-icons/Astra_icon.webp" },
     { id: "breach", name: "Breach", image: "/agent-icons/Breach_icon.webp" },
+    { id: "brimstone", name: "Brimstone", image: "/agent-icons/Brimstone_icon.webp" },
     { id: "chamber", name: "Chamber", image: "/agent-icons/Chamber_icon.webp" },
     { id: "cypher", name: "Cypher", image: "/agent-icons/Cypher_icon.webp" },
     {
@@ -20,6 +26,8 @@ const AgentSelector = ({ playerData, weekId }) => {
     },
     { id: "fade", name: "Fade", image: "/agent-icons/Fade_icon.webp" },
     { id: "gekko", name: "Gekko", image: "/agent-icons/Gekko_icon.webp" },
+    {id: "harbor", name: "Harbor", image: "/agent-icons/Harbor_icon.webp"},
+    {id: "iso", name: "Iso", image: "/agent-icons/Iso_icon.webp"},
     { id: "jett", name: "Jett", image: "/agent-icons/Jett_icon.webp" },
     { id: "kayo", name: "KAY/O", image: "/agent-icons/KAYO_icon.webp" },
     { id: "killjoy", name: "Killjoy", image: "/agent-icons/Killjoy_icon.webp" },
@@ -87,7 +95,22 @@ const AgentSelector = ({ playerData, weekId }) => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [showSelector]); // Only re-run if showSelector changes
+  }, [showSelector]);
+
+  // Adjust position if it goes beyond the page's bottom
+  useEffect(() => {
+    if (showSelector && selectorRef.current) {
+      const margin = 100; // Margin from the bottom of the viewport
+      const { bottom } = selectorRef.current.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      if (bottom > viewportHeight) {
+        const overflowHeight = bottom - viewportHeight + margin;
+        selectorRef.current.style.transform = `translateY(-${overflowHeight}px)`;
+      } else {
+        selectorRef.current.style.transform = "none";
+      }
+    }
+  }, [showSelector, selectedAgents]); // Re-run this effect when showSelector changes or selectedAgents changes
 
   return (
     <>

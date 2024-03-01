@@ -6,7 +6,7 @@ const MessageSchema = new mongoose.Schema({
   image: { type: String }, // Image of the sender
   senderId: { type: String, required: true }, // User ID (senderId from the message object)
   teamId: { type: String, required: true }, // Team ID
-  time: { type: String, required: true }, // Timestamp of the message
+  time: { type: Date, default: Date.now, required: true }, // Timestamp of the message as a Date
 });
 
 const Message = mongoose.model("Message", MessageSchema);

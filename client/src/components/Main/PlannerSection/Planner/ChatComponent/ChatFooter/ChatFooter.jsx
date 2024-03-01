@@ -41,6 +41,7 @@ const ChatFooter = ({ socket, playersData }) => {
           className="flex-grow input input-block"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
+          maxLength={250}
         />
         <button
           type="submit"

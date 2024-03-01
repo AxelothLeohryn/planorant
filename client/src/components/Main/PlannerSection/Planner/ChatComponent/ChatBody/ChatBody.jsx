@@ -61,7 +61,7 @@ const ChatBody = ({ messages, playersData, lastMessageRef }) => {
                   <time className="text-xs opacity-75 ml-2">{messageTime}</time>
                 </div>
                 <div
-                  className={`w-fit p-2 rounded-lg ${bubbleColor} mb-2`}
+                  className={`w-fit p-2 rounded-lg ${bubbleColor} mb-2 break-all`}
                 >
                   {message.text}
                 </div>

@@ -100,7 +100,7 @@ const AgentSelector = ({ playerData, weekId }) => {
   // Adjust position if it goes beyond the page's bottom
   useEffect(() => {
     if (showSelector && selectorRef.current) {
-      const margin = 100; // Margin from the bottom of the viewport
+      const margin = 50; // Margin from the bottom of the viewport
       const { bottom } = selectorRef.current.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
       if (bottom > viewportHeight) {

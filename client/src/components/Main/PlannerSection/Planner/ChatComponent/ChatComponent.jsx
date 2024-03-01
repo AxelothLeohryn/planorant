@@ -15,7 +15,7 @@ const ChatComponent = ({ playersData }) => {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    const newSocket = socketIO.connect("http://localhost:5000");
+    const newSocket = socketIO.connect();
     setSocket(newSocket);
   
     // Emit the newUser event immediately after connecting

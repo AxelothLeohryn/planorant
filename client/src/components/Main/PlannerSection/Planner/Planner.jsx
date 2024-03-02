@@ -106,7 +106,7 @@ const Planner = ({ setHaveTeam }) => {
             />
           </div>
           {isDesktop && (
-            <div className="hidden md:flex">
+            <div className="hidden md:flex h-fit w-fit sticky top-[4.5rem]">
               <ChatComponent playersData={playersData} />
             </div>
           )}

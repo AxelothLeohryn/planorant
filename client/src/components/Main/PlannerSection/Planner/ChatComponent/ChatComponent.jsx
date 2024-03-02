@@ -70,7 +70,7 @@ const ChatComponent = ({ playersData }) => {
   if (!socket) return <div>Loading...</div>;
 
   return (
-    <div className="w-full max-w-[1920px] bg-backgroundPrimary px-5 flex flex-col md:flex-row-reverse gap-4">
+    <div className="w-full max-w-[1920px] bg-backgroundPrimary px-5 flex flex-col md:flex-row-reverse gap-4 ">
       <ChatBar playersData={playersData} socket={socket} />
       <div className="md:w-3/4 h-[57vh] md:h-[87vh] flex flex-col border-2 border-border rounded">
         <div className="overflow-y-scroll flex-grow bg-border p-5 scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar scrollbar-thumb-content3 scrollbar-track-slate-content1">

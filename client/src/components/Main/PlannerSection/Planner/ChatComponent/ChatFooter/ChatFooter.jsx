@@ -32,7 +32,7 @@ const ChatFooter = ({ socket, playersData }) => {
   return (
     <div className="bg-border flex-shrink-0">
       <form
-        className="flex w-full justify-between items-center gap-1 p-1"
+        className="flex w-full justify-between items-center gap-1 px-1"
         onSubmit={handleSendMessage}
       >
         <input

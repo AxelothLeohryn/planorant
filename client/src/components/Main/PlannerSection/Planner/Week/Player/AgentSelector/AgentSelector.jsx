@@ -114,7 +114,7 @@ const AgentSelector = ({ playerData, weekId }) => {
 
   return (
     <>
-      <div className="flex flex-wrap md:gap-4 relative">
+      <div className="flex flex-wrap md:gap-4 relative items-start">
         {selectedAgents.map((agentId, index) => {
           const agent = allAgents.find((a) => a.id === agentId);
           return (

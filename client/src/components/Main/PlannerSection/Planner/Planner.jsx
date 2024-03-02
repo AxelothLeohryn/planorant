@@ -19,12 +19,13 @@ const Planner = ({ setHaveTeam }) => {
 
   const [playersData, setPlayersData] = useState([]);
 
-  const [showChat, setShowChat] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
+  const [showChatMobile, setShowChatMobile] = useState(false);
 
   const toggleRefresh = () => setRefresh(!refresh);
 
-  const toggleShowChat = () => {
-    setShowChat(!showChat);
+  const toggleShowChatMobile = () => {
+    setShowChatMobile(!showChatMobile);
   };
 
   const handleDeleteTeam = async () => {
@@ -72,28 +73,44 @@ const Planner = ({ setHaveTeam }) => {
     fetchTeamData();
   }, [team, refresh]);
 
+  useEffect(() => {
+    const handleResize = () => setIsDesktop(window.innerWidth >= 768);
+    window.addEventListener('resize', handleResize);
+    // Cleanup to remove the event listener on component unmount
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   if (isLoading) {
     return <div className="skeleton-pulse h-24"></div>;
   } else {
     return (
       <>
-        <button className="btn mb-4" onClick={toggleShowChat}>
+        <button className="md:hidden btn mb-2" onClick={toggleShowChatMobile}>
           Show Chat
         </button>
-        {showChat && <ChatComponent playersData={playersData} />}
-        <Team
-          teamData={teamData}
-          teamMembersNumber={teamMembersNumber}
-          playersData={playersData}
-          handleDeleteTeam={handleDeleteTeam}
-          toggleRefresh={toggleRefresh}
-        />
+        {showChatMobile && <ChatComponent playersData={playersData} />}
+        <div className="md:flex">
+          <div>
+            <Team
+              teamData={teamData}
+              teamMembersNumber={teamMembersNumber}
+              playersData={playersData}
+              handleDeleteTeam={handleDeleteTeam}
+              toggleRefresh={toggleRefresh}
+            />
 
-        <CreateWeekComponent
-          team={team}
-          teamData={teamData}
-          toggleRefresh={toggleRefresh}
-        />
+            <CreateWeekComponent
+              team={team}
+              teamData={teamData}
+              toggleRefresh={toggleRefresh}
+            />
+          </div>
+          {isDesktop && (
+            <div className="hidden md:flex">
+              <ChatComponent playersData={playersData} />
+            </div>
+          )}
+        </div>
       </>
     );
   }

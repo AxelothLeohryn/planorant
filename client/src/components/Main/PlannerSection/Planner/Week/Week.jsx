@@ -127,7 +127,7 @@ const Week = ({ weekId, teamData, playersData, toggleRefresh }) => {
     return (
       <>
         <article
-          className="my-4 accordion "
+          className="my-4 accordion"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
@@ -139,7 +139,7 @@ const Week = ({ weekId, teamData, playersData, toggleRefresh }) => {
           {/* {The actual content of the week card is in the label} */}
           <label
             htmlFor={`accordion-${weekData._id}`}
-            className="accordion-title flex-row items-center justify-between gap-2 md:gap-4 p-0 bg-backgroundSecondary hover:bg-border rounded "
+            className="accordion-title flex-row items-center justify-between gap-2 md:gap-4 p-0 bg-backgroundSecondary hover:bg-border border border-border rounded "
           >
             {/* <button className=" [&>*>*]:text-xs [&>*>*]:text-red-8 mr-5 absolute -right-3 bottom-2 md:hidden hover:scale-110 transition-transform duration-300 ease-in-out">
               <DeleteWeekComponent
@@ -147,7 +147,7 @@ const Week = ({ weekId, teamData, playersData, toggleRefresh }) => {
                 handleDeleteWeek={handleDeleteWeek}
               />
             </button> */}
-            <div className="flex items-center justify-center gap-4">
+            <div className="flex items-center justify-center gap-4 ">
               <div className="avatar -translate-x-2 md:-translate-x-5 size-[7rem] md:size-[7rem] avatar-squared aspect-square -rotate-3">
                 <img
                   src={LoadingScreens[weekData.map]}
@@ -222,7 +222,7 @@ const Week = ({ weekId, teamData, playersData, toggleRefresh }) => {
           </label>
           {/* The content inside the card when clicked is inside this div accordion-content */}
           <div className="accordion-content !pt-0">
-            <div className="min-h-0">
+            <div className="min-h-0 ">
               {playersData.map((player) => (
                 <Player
                   playerData={player}

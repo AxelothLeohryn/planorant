@@ -16,7 +16,9 @@ const ChatComponent = ({ playersData }) => {
 
   useEffect(() => {
     //REMOVE LOCALHOST, LEAVE EMPTY IN PRODUCTION
+    // const newSocket = socketIO.connect("http://localhost:5000");
     const newSocket = socketIO.connect();
+    
     setSocket(newSocket);
   
     // Emit the newUser event immediately after connecting
@@ -68,10 +70,10 @@ const ChatComponent = ({ playersData }) => {
   if (!socket) return <div>Loading...</div>;
 
   return (
-    <div className="w-full bg-backgroundSecondary p-5 flex flex-col md:flex-row gap-4">
+    <div className="w-full max-w-[1920px] bg-backgroundPrimary px-5 flex flex-col md:flex-row-reverse gap-4">
       <ChatBar playersData={playersData} socket={socket} />
-      <div className="md:w-3/4 h-[57vh] md:h-[50vh] flex flex-col border border-content3 rounded">
-        <div className="overflow-y-scroll flex-grow bg-border p-5">
+      <div className="md:w-3/4 h-[57vh] md:h-[87vh] flex flex-col border-2 border-border rounded">
+        <div className="overflow-y-scroll flex-grow bg-border p-5 scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar scrollbar-thumb-content3 scrollbar-track-slate-content1">
           <ChatBody
             lastMessageRef={lastMessageRef}
             playersData={playersData}

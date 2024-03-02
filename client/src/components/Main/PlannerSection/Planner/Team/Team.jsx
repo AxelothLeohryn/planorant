@@ -20,7 +20,7 @@ const Team = ({
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <div className="relative flex-row flex-nowrap md:flex md:items-center md:justify-between bg-backgroundSecondary p-5 rounded">
+        <div className="relative flex-row flex-nowrap md:flex md:items-center md:justify-between bg-backgroundSecondary p-5 border border-border rounded">
           <div className="min-w-0  mb-2">
             <h2 className="text-2xl font-bold leading-7 text-content1 sm:truncate sm:text-3xl sm:tracking-tight">
               {teamData.name}{" "}

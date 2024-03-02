@@ -79,20 +79,23 @@ const Player = ({ playerData, weekId, onAvailabilityChange }) => {
   };
 
   return (
-    <article className="flex flex-col md:flex-row flex-wrap items-center justify-start md:justify-between gap-2 md:gap-4 px-4 ml-1 md:ml-7 bg-backgroundSecondary hover:bg-border rounded">
-      <div className="flex flex-row w-full pt-4 md:pt-0 md:w-fit items-center gap-3 md:gap-4">
+    <article className="flex flex-col md:flex-row flex-wrap items-center justify-start md:justify-between gap-2 md:gap-4 px-4 ml-1 md:ml-7 bg-backgroundSecondary hover:bg-border border border-border roundedd">
+      <div className="flex flex-row w-full pt-4 md:pt-0 md:w-2/3 items-center justify-between gap-3 md:gap-4">
+        <div className="flex items-center justify-center gap-4">
+
         <div className="avatar md:avatar-xl">
           {/* <img src={playerData.image} alt={`${playerData.username} avatar`} /> */}
           <p className="text-xl text-primary">{playerData.username.slice(0,2)}</p>
         </div>
-        <div className="flex justify-between items-center gap-6">
           <h3 className="text-lg md:text-xl font-bold text-nowrap">
             {playerData.username}
           </h3>
-          <div className="flex">
+        </div>
+        {/* <div className="flex justify-start items-center gap-6 md:w-96"> */}
+          <div className="flex w-1/2">
             <AgentSelector playerData={playerData} weekId={weekId} />
           </div>
-        </div>
+        {/* </div> */}
       </div>
       <div className="m-auto md:m-2 md:mr-3 text-nowrap">
         <div className="flex gap-4">

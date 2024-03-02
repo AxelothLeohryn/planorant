@@ -19,8 +19,8 @@ const ChatBar = ({ socket, playersData }) => {
   }, [socket]); // Dependency on socket ensures listener is added once socket is available
 
   return (
-    <div className="md:w-1/3">
-      <h4>ACTIVE USERS</h4>
+    <div className="md:w-1/4">
+      <h4 className="text-xl">Online</h4>
       <div className="bg-border p-4 rounded">
         <div className="flex flex-col gap-3">
           {users.map((user) => (

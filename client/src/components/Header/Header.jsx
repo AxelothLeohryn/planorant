@@ -36,7 +36,7 @@ const Header = () => {
   return (
     <>
       <header className="sticky top-0 z-50">
-        <nav className="navbar ">
+        <nav className="mx-auto navbar max-w-[1920px] ">
           <div className="navbar-start">
             <div className="avatar avatar-ring avatar-md">
               <div className="dropdown-container">

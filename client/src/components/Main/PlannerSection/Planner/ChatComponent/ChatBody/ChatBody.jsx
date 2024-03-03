@@ -153,15 +153,6 @@ const ChatBody = ({ socket, messages, playersData, lastMessageRef }) => {
                     </div>
                     {isLastMessage && (
                       <>
-                        {typingUsers.length > 0 && (
-                          <>
-                            <div className="relative">
-                              <div className="absolute bottom-1">
-                                <p>{getTypingMessage()}</p>
-                              </div>
-                            </div>
-                          </>
-                        )}
                         <div className="" ref={lastMessageRef} />
                       </>
                     )}
@@ -170,6 +161,15 @@ const ChatBody = ({ socket, messages, playersData, lastMessageRef }) => {
               })}
             </div>
           ))}
+          {typingUsers.length > 0 && (
+            <>
+              <div className="relative">
+                <div className="absolute bottom-1">
+                  <p>{getTypingMessage()}</p>
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </>
     );

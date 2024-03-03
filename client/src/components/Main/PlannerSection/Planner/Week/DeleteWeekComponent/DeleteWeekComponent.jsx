@@ -29,17 +29,17 @@ const DeleteWeekComponent = ({ weekName, handleDeleteWeek }) => {
           >
             ✕
           </label>
-          <h2 className="text-xl">{`Delete ${weekName} ?`}</h2>
-          <span>
+          <h2 className="text-xl text-content1">{`Delete ${weekName}?`}</h2>
+          <span className="text-content1">
             Are you sure you want to delete this week?
-            <p className="text-xs text-gray-500">
+            <p className="text-xs text-content3">
               This action cannot be undone.
             </p>
           </span>
           <div className="flex gap-3">
             <button
               onClick={handleDeleteWeek}
-              className="btn btn-block bg-red-7"
+              className="btn btn-block bg-primary"
             >
               Delete
             </button>

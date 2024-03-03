@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useEffect } from 'react';
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import { useAuth } from "../../context/AuthContext";
 
 const Authenticate = () => {
   const { login } = useAuth();
+
+   // useEffect hook to set the light theme when the component mounts (fix for the google login button on dark theme)
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', 'light');
+
+    // Return a cleanup function to reset/remove the attribute when the component unmounts
+    return () => {
+      document.documentElement.removeAttribute('data-theme');
+    };
+  }, []); 
 
   return (
     <>

@@ -10,36 +10,10 @@ module.exports = (http) => {
     },
   });
 
+  // Connection - Request Messages - Typing - Message - Disconnection
+
   io.on("connection", (socket) => {
     console.log(`⚡: ${socket.id} user just connected!`);
-
-    socket.on("message", async (data) => {
-      // Assuming message data includes { message, teamId }
-      console.log(data);
-
-      // Create and save the message document
-      const message = new Message({
-        text: data.text,
-        username: data.name,
-        image: data.image,
-        senderId: data.senderId, // Consider changing this to userID if available
-        teamId: data.teamId,
-        time: data.time,
-      });
-      try {
-        await message.save();
-        console.log("Message saved to database");
-      } catch (error) {
-        console.error("Error saving message to database", error);
-      }
-
-      // Emit message only to users of the same team
-      users
-        .filter((u) => u.teamId === data.teamId)
-        .forEach((user) => {
-          io.to(user.socketID).emit("messageResponse", data);
-        });
-    });
 
     // Listens when a new user joins the server
     socket.on("newUser", (data) => {
@@ -69,6 +43,54 @@ module.exports = (http) => {
       } catch (error) {
         console.error("Error fetching messages from database", error);
       }
+    });
+
+    socket.on("typing", (data) => {
+      console.log("Typing: ", data);
+      // Emit typing status only to users of the same team
+      users
+      .filter((u) => u.teamId === data.teamId)
+      .forEach((user) => {
+        io.to(user.socketID).emit("typingUserAdd", data);
+        console.log("Typing user added");
+      });
+    });
+
+    socket.on("stopTyping", (data) => {
+      // Emit stop typing status only to users of the same team
+      users
+      .filter((u) => u.teamId === data.teamId)
+      .forEach((user) => {
+        io.to(user.socketID).emit("typingUserDelete", data);
+      });
+    });
+
+    socket.on("message", async (data) => {
+      // Assuming message data includes { message, teamId }
+      console.log(data);
+
+      // Create and save the message document
+      const message = new Message({
+        text: data.text,
+        username: data.name,
+        image: data.image,
+        senderId: data.senderId, // Consider changing this to userID if available
+        teamId: data.teamId,
+        time: data.time,
+      });
+      try {
+        await message.save();
+        console.log("Message saved to database");
+      } catch (error) {
+        console.error("Error saving message to database", error);
+      }
+
+      // Emit message only to users of the same team
+      users
+        .filter((u) => u.teamId === data.teamId)
+        .forEach((user) => {
+          io.to(user.socketID).emit("messageResponse", data);
+        });
     });
 
     socket.on("disconnect", () => {

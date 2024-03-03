@@ -45,7 +45,7 @@ const Week = ({ weekId, teamData, playersData, toggleRefresh }) => {
     toggleRefresh();
   };
   const refreshComponent = () => {
-    setRefreshTrigger(prev => !prev); // Toggle the state to force re-render
+    setRefreshTrigger((prev) => !prev); // Toggle the state to force re-render
   };
 
   useEffect(() => {
@@ -96,7 +96,6 @@ const Week = ({ weekId, teamData, playersData, toggleRefresh }) => {
         }
       });
 
-
       const calculateAvailability = (available, unavailable) => {
         if (available >= 5) return "dot-success";
         if (unavailable >= 3) return "dot-error";
@@ -117,7 +116,6 @@ const Week = ({ weekId, teamData, playersData, toggleRefresh }) => {
           availabilityCount.SUN.unavailable
         ),
       };
-
 
       setDayAvailability(dayAvailabilities);
     }
@@ -148,11 +146,17 @@ const Week = ({ weekId, teamData, playersData, toggleRefresh }) => {
               />
             </button> */}
             <div className="flex items-center justify-center gap-4 ">
-              <div className="avatar -translate-x-2 md:-translate-x-5 size-[7rem] md:size-[7rem] avatar-squared aspect-square -rotate-3">
-                <img
-                  src={LoadingScreens[weekData.map]}
-                  alt={`${weekData.map} loading screen`}
-                />
+              <div className="popover popover-hover">
+                <div className="avatar popover-trigger -translate-x-2 md:-translate-x-5 size-[7rem] md:size-[7rem] avatar-squared aspect-square -rotate-3">
+                  <img
+                    src={LoadingScreens[weekData.map]}
+                    alt={`${weekData.map} loading screen`}
+                  />
+                </div>
+                <div className="popover-content popover-right w-[7rem] md:w-[7rem] ">
+                  <div className="popover-arrow "></div>
+                  <div className="p-1 text-sm m-auto">{weekData.map}</div>
+                </div>
               </div>
               <h3 className="hidden sm:flex text-nowrap">
                 {weekData.weekName ? weekData.weekName : null}
@@ -167,21 +171,27 @@ const Week = ({ weekId, teamData, playersData, toggleRefresh }) => {
                         THU {weekData.weekdays.thursday.slice(-2)}/
                         {weekData.weekdays.thursday.slice(5, 7)}
                       </span>
-                      <span className={`dot size-3 -translate-y-0.5 ${dayAvailability.THU}`}></span>
+                      <span
+                        className={`dot size-3 -translate-y-0.5 ${dayAvailability.THU}`}
+                      ></span>
                     </div>
                     <div className="flex items-center">
                       <span className="mr-1">
                         SAT {weekData.weekdays.saturday.slice(-2)}/
                         {weekData.weekdays.saturday.slice(5, 7)}
                       </span>
-                      <span className={`dot size-3 -translate-y-0.5 ${dayAvailability.SAT}`}></span>
+                      <span
+                        className={`dot size-3 -translate-y-0.5 ${dayAvailability.SAT}`}
+                      ></span>
                     </div>
                     <div className="flex items-center">
                       <span className="mr-1">
                         SUN {weekData.weekdays.sunday.slice(-2)}/
                         {weekData.weekdays.sunday.slice(5, 7)}
                       </span>
-                      <span className={`dot size-3 -translate-y-0.5 ${dayAvailability.SUN}`}></span>
+                      <span
+                        className={`dot size-3 -translate-y-0.5 ${dayAvailability.SUN}`}
+                      ></span>
                     </div>
                   </>
                 )}

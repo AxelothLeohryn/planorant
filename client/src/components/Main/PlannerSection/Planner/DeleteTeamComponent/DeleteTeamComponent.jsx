@@ -29,7 +29,7 @@ const DeleteTeamComponent = ({ teamData, handleDeleteTeam }) => {
           >
             ✕
           </label>
-          <h2 className="text-xl">{`Delete ${teamData.name} ?`}</h2>
+          <h2 className="text-xl text-content1">{`Delete ${teamData.name}?`}</h2>
           <span>
             Are you sure you want to delete this team?
             <p className="text-xs text-gray-500">
@@ -39,7 +39,7 @@ const DeleteTeamComponent = ({ teamData, handleDeleteTeam }) => {
           <div className="flex gap-3">
             <button
               onClick={handleDeleteTeam}
-              className="btn btn-block bg-red-7"
+              className="btn btn-block bg-primary"
             >
               Delete
             </button>

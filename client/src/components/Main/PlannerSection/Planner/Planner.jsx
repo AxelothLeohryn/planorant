@@ -19,7 +19,7 @@ const Planner = ({ setHaveTeam }) => {
 
   const [playersData, setPlayersData] = useState([]);
 
-  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 900);
   const [showChatMobile, setShowChatMobile] = useState(false);
 
   const toggleRefresh = () => setRefresh(!refresh);
@@ -74,10 +74,10 @@ const Planner = ({ setHaveTeam }) => {
   }, [team, refresh]);
 
   useEffect(() => {
-    const handleResize = () => setIsDesktop(window.innerWidth >= 768);
-    window.addEventListener('resize', handleResize);
+    const handleResize = () => setIsDesktop(window.innerWidth >= 900);
+    window.addEventListener("resize", handleResize);
     // Cleanup to remove the event listener on component unmount
-    return () => window.removeEventListener('resize', handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   if (isLoading) {
@@ -85,9 +85,12 @@ const Planner = ({ setHaveTeam }) => {
   } else {
     return (
       <>
-        <button className="md:hidden btn mb-2" onClick={toggleShowChatMobile}>
-          Show Chat
-        </button>
+        {!isDesktop && (
+          <button className="btn mb-2" onClick={toggleShowChatMobile}>
+            Show Chat
+          </button>
+        )}
+
         {showChatMobile && <ChatComponent playersData={playersData} />}
         <div className="md:flex">
           <div>
@@ -106,7 +109,7 @@ const Planner = ({ setHaveTeam }) => {
             />
           </div>
           {isDesktop && (
-            <div className="hidden md:flex h-fit w-fit sticky top-[4.5rem]">
+            <div className="h-fit w-full sticky top-[4.5rem]">
               <ChatComponent playersData={playersData} />
             </div>
           )}

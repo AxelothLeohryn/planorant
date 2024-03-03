@@ -11,7 +11,7 @@ import CreateUser from "./components/CreateUser/CreateUser";
 import axios from "axios";
 
 //REMOVE IN PRODUCTION
-// axios.defaults.baseURL = "http://localhost:5000";
+axios.defaults.baseURL = "http://localhost:5000";
 
 
 

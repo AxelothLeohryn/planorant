@@ -12,6 +12,14 @@ const Team = ({
   toggleRefresh,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [isCopied, setIsCopied] = useState(false); // State for managing copy popover visibility
+
+  const handleCopyToClipboard = (text) => {
+    navigator.clipboard.writeText(text).then(() => {
+      setIsCopied(true); // Show the "Copied!" popover
+      setTimeout(() => setIsCopied(false), 2000); // Hide the popover after 2 seconds
+    });
+  };
 
   return (
     <>
@@ -32,13 +40,18 @@ const Team = ({
               <div className="flex flex-col">
                 <div className="avatar-group gap-1 mb-2">
                   {playersData.map((player) => (
-                    <div key={player.username} className="popover-hover">
+                    <div
+                      key={player.username}
+                      className="popover popover-hover"
+                    >
                       <label
                         className="avatar my-2 popover-trigger hover:scale-110 transition duration-300"
                         tabIndex="0"
                       >
                         {/* <img className="" src={player.image} alt="avatar" /> */}
-                        <p className="text-lg text-primary">{player.username.slice(0,2)}</p>
+                        <p className="text-lg text-primary">
+                          {player.username.slice(0, 2)}
+                        </p>
                       </label>
                       <div className="popover-content w-fit px-5">
                         <div className="popover-arrow"></div>
@@ -49,23 +62,24 @@ const Team = ({
                 </div>
                 <div className="flex items-center text-sm text-content2 gap-4 mb-2 md:mb-0">
                   <div className="flex items-center justify-center">
-
-                  
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    className="mr-1.5 h-5 w-5 flex-shrink-0 text-content2"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  {teamMembersNumber}/7 members
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      className="mr-1.5 h-5 w-5 flex-shrink-0 text-content2"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    {teamMembersNumber}/7 members
                   </div>
-                  <div className="flex items-center text-sm text-content2">
+                  <div
+                    onClick={() => handleCopyToClipboard(teamData.key)}
+                    className="relative flex items-center text-sm text-content2 cursor-pointer hover:underline underline-offset-2"
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
@@ -78,8 +92,8 @@ const Team = ({
                         clipRule="evenodd"
                       />
                     </svg>
-
                     {teamData.key}
+                    {isCopied && <p className="badge ml-2 absolute left-16">Copied!</p>}
                   </div>
                 </div>
               </div>

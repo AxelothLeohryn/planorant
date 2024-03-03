@@ -7,7 +7,7 @@ import Profile from "./Profile";
 const Main = () => {
   return (
     <>
-      <main className="mx-auto md:mx-5 p-4 md:p-0 mt-4  transition ">
+      <main className="mx-auto p-4 md:p-0 mt-4 max-w-[1920px] transition ">
         <Routes>
           <Route path="/" element={<PlannerSection />} />
           <Route path="/profile" element={<Profile />} />

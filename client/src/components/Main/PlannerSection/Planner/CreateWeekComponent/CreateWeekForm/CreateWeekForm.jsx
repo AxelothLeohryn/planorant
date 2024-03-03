@@ -292,7 +292,6 @@ const CreateWeekForm = ({ team, teamData, onClose, toggleRefresh }) => {
               className={`input rounded-none max-w-full ${
                 !isValoplantInputValid ? "invalid:border-primary" : ""
               } transition`}
-              required
               minLength={12}
               maxLength={35}
               onChange={handleValoplantInputChange}

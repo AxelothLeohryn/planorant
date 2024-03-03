@@ -42,6 +42,7 @@ const NoTeamsPage = ({ setHaveTeam }) => {
 
       toast.success(`You have joined the team: ${teamData.data.name}`);
       // Update team status to refresh the PlannerComponent
+      setTeam(teamData.data._id);
       setHaveTeam(true);
     } catch (error) {
       toast.error(`No team found with the invite code: ${inviteCode}`);

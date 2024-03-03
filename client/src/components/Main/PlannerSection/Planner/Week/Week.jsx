@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 import DeleteWeekComponent from "./DeleteWeekComponent/DeleteWeekComponent";
 import Player from "./Player/Player";
 
@@ -42,6 +43,7 @@ const Week = ({ weekId, teamData, playersData, toggleRefresh }) => {
 
     //Delete the week
     await axios.delete(`/api/week/delete/${weekId}`);
+    toast.success("Week deleted successfully");
     toggleRefresh();
   };
   const refreshComponent = () => {
@@ -137,9 +139,9 @@ const Week = ({ weekId, teamData, playersData, toggleRefresh }) => {
           {/* {The actual content of the week card is in the label} */}
           <label
             htmlFor={`accordion-${weekData._id}`}
-            className="accordion-title flex-row items-center justify-between gap-2 md:gap-4 p-0 bg-backgroundSecondary hover:bg-border border border-border rounded "
+            className="accordion-title flex-row items-center justify-between gap-2 2xl:gap-4 p-0 bg-backgroundSecondary hover:bg-border border border-border rounded "
           >
-            {/* <button className=" [&>*>*]:text-xs [&>*>*]:text-red-8 mr-5 absolute -right-3 bottom-2 md:hidden hover:scale-110 transition-transform duration-300 ease-in-out">
+            {/* <button className=" [&>*>*]:text-xs [&>*>*]:text-red-8 mr-5 absolute -right-3 bottom-2 2xl:hidden hover:scale-110 transition-transform duration-300 ease-in-out">
               <DeleteWeekComponent
                 weekName={weekData.weekName}
                 handleDeleteWeek={handleDeleteWeek}
@@ -147,13 +149,13 @@ const Week = ({ weekId, teamData, playersData, toggleRefresh }) => {
             </button> */}
             <div className="flex items-center justify-center gap-4 ">
               <div className="popover popover-hover">
-                <div className="avatar popover-trigger -translate-x-2 md:-translate-x-5 size-[7rem] md:size-[7rem] avatar-squared aspect-square -rotate-3">
+                <div className="avatar popover-trigger -translate-x-2 2xl:-translate-x-5 size-[7rem] 2xl:size-[7rem] avatar-squared aspect-square -rotate-3">
                   <img
                     src={LoadingScreens[weekData.map]}
                     alt={`${weekData.map} loading screen`}
                   />
                 </div>
-                <div className="popover-content popover-right w-[7rem] md:w-[7rem] ">
+                <div className="popover-content popover-right w-[7rem] 2xl:w-[7rem] ">
                   <div className="popover-arrow "></div>
                   <div className="p-1 text-sm m-auto">{weekData.map}</div>
                 </div>
@@ -162,8 +164,8 @@ const Week = ({ weekId, teamData, playersData, toggleRefresh }) => {
                 {weekData.weekName ? weekData.weekName : null}
               </h3>
             </div>
-            <div className="flex flex-row gap-5 md:gap-10 md:flex-row-reverse">
-              <div className="flex gap-4 flex-col text-base md:flex-row md:gap-10 md:mr-8 my-4 text-nowrap">
+            <div className="flex flex-row gap-5 2xl:gap-10 lg:flex-row-reverse text-">
+              <div className="flex gap-4 flex-col items-end text-base lg:flex-row 2xl:gap-10 2xl:mr-8 my-4 text-nowrap">
                 {weekData.weekdays && (
                   <>
                     <div className="flex items-center justify-between">
@@ -196,33 +198,37 @@ const Week = ({ weekId, teamData, playersData, toggleRefresh }) => {
                   </>
                 )}
               </div>
-              <a
-                className="link text-sm md:text-base mr-3 md:mr-8"
-                href={weekData.valoplant}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <p>Valoplant</p>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="size-[0.7rem] md:size-[0.85rem] ml-1 md:ml-2 -translate-y-0.5"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
-                  />
-                </svg>
-              </a>
+              <div className="m-auto min-w-[84px]">
+                {weekData.valoplant && (
+                  <a
+                    className="link text-sm 2xl:text-base mr-3 2xl:mr-8"
+                    href={weekData.valoplant}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <p>Valoplant</p>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth="1.5"
+                      stroke="currentColor"
+                      className="size-[0.7rem] 2xl:size-[0.85rem] ml-1 2xl:ml-2 -translate-y-0.5"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                      />
+                    </svg>
+                  </a>
+                )}
+              </div>
             </div>
 
             <div
               style={{ visibility: isHovered ? "visible" : "hidden" }}
-              className="[&>*>*]:text-xs [&>*>*]:text-primary mr-5 absolute -right-3 top-3 md:flex"
+              className="[&>*>*]:text-xs [&>*>*]:text-primary mr-5 absolute -right-3 bottom-0 2xl:flex"
             >
               <DeleteWeekComponent
                 weekName={weekData.weekName}

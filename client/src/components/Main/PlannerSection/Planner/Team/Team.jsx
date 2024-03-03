@@ -3,12 +3,14 @@ import DeleteTeamComponent from "../DeleteTeamComponent";
 import { useAuth } from "../../../../../context/AuthContext";
 import axios from "axios";
 import Week from "../Week/Week";
+import LeaveTeamComponent from "./LeaveTeamComponent";
 
 const Team = ({
   teamMembersNumber,
   teamData,
   playersData,
   handleDeleteTeam,
+  handleLeaveTeam,
   toggleRefresh,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -102,6 +104,15 @@ const Team = ({
           <div
             style={{ visibility: isHovered ? "visible" : "hidden" }}
             className="[&>*>label]:text-primary mr-5 absolute -right-3 top-3 md:flex"
+          >
+            <LeaveTeamComponent
+              teamData={teamData}
+              handleLeaveTeam={handleLeaveTeam}
+            />
+          </div>
+          <div
+            style={{ visibility: isHovered ? "visible" : "hidden" }}
+            className="[&>*>label]:text-primary mr-5 absolute -right-3 bottom-0 md:flex"
           >
             <DeleteTeamComponent
               teamData={teamData}

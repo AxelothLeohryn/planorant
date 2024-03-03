@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../../../../context/AuthContext";
 import axios from "axios";
-import CreateWeekForm from "./CreateWeekComponent/CreateWeekForm/CreateWeekForm";
+import toast, { Toaster } from "react-hot-toast";
 
-import Week from "./Week/Week";
 import ChatComponent from "./ChatComponent/ChatComponent";
 import Team from "./Team/Team";
 import CreateWeekComponent from "./CreateWeekComponent/CreateWeekComponent";
@@ -19,7 +18,7 @@ const Planner = ({ setHaveTeam }) => {
 
   const [playersData, setPlayersData] = useState([]);
 
-  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 900);
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1536);
   const [showChatMobile, setShowChatMobile] = useState(false);
 
   const toggleRefresh = () => setRefresh(!refresh);
@@ -37,11 +36,40 @@ const Planner = ({ setHaveTeam }) => {
       });
     }
 
+    //Delete the messages associated with the team
+    //TODO - create route to delete messages by team
+
     // Delete the team
     await axios.delete(`/api/team/delete/${team}`);
+    toast.success("Team deleted successfully");
 
-    setTeamData(null);
+    setTeamData("");
     setHaveTeam(false);
+  };
+
+  const handleLeaveTeam = async () => {
+    // Fetch the data of the player to leave the team
+    const playerData = playersData.find((player) => player.username === userName)
+
+    try {
+      //Delete the team and weeks from player
+      await axios.put(`/api/player/edit/${playerData._id}`, {
+        team: null,
+        weeks: [],
+      });
+      //Delete the player from the team
+      await axios.put(`/api/team/edit/${team}`, {
+        players: teamData.players.filter(
+          (playerId) => playerId !== playerData._id
+        ),
+      });
+      setTeam(null);
+      setHaveTeam(false);
+      toast.success("You have left the team");
+    } catch (error) {
+      console.error("Failed to leave team:", error);
+      toast.error("Failed to leave team");
+    }
   };
 
   useEffect(() => {
@@ -74,7 +102,7 @@ const Planner = ({ setHaveTeam }) => {
   }, [team, refresh]);
 
   useEffect(() => {
-    const handleResize = () => setIsDesktop(window.innerWidth >= 900);
+    const handleResize = () => setIsDesktop(window.innerWidth >= 1536);
     window.addEventListener("resize", handleResize);
     // Cleanup to remove the event listener on component unmount
     return () => window.removeEventListener("resize", handleResize);
@@ -92,13 +120,14 @@ const Planner = ({ setHaveTeam }) => {
         )}
 
         {showChatMobile && <ChatComponent playersData={playersData} />}
-        <div className="md:flex">
-          <div>
+        <div className="2xl:flex xl:max-w-[1920px]">
+          <div className="max-w-full 2xl:w-2/3">
             <Team
               teamData={teamData}
               teamMembersNumber={teamMembersNumber}
               playersData={playersData}
               handleDeleteTeam={handleDeleteTeam}
+              handleLeaveTeam={handleLeaveTeam}
               toggleRefresh={toggleRefresh}
             />
 
@@ -109,7 +138,7 @@ const Planner = ({ setHaveTeam }) => {
             />
           </div>
           {isDesktop && (
-            <div className="h-fit w-full sticky top-[4.5rem]">
+            <div className="h-fit w-1/2 sticky top-[4.5rem]">
               <ChatComponent playersData={playersData} />
             </div>
           )}

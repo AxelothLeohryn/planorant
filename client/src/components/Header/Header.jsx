@@ -118,6 +118,8 @@ const Header = () => {
                     >
                       Invites (WIP)
                     </NavLink>
+                    {/* <div className="dropdown-divider"></div> */}
+                    <p className="text-content3">Planorant v0.9</p>
 
                     {/* <a tabindex="-1" className="text-sm dropdown-item">
                     Account settings

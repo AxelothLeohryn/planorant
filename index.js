@@ -20,7 +20,6 @@ app.use(morgan("dev"));
 
 //Routes
 const apiRoutes = require("./routes/api.routes.js");
-const userRoutes = require("./routes/user.routes.js");
 
 //Socket.io
 setupSocketIO(http);

@@ -27,7 +27,7 @@ https://planorant.com/
 - **🔄MongoDB syncronization**: Acess your team planner from any device.
   Every change and chat message is stored in a database for persistence and access from any device
 
-- **🌗Light and Dark themes**: Switch between your preferred light or dark themes, with a consistent and clean design using RippleUI (link should be here)
+- **🌗Light and Dark themes**: Switch between your preferred light or dark themes, with a consistent and clean design using RippleUI and [Radix-UI colors system](https://www.radix-ui.com/colors).
 
 - **🔑 Google Login**: Users can easily login and create a user with their Google account.
 

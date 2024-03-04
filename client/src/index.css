@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 :root {
-    color-scheme: light dark;
     font-family: "DIN";
 }
 

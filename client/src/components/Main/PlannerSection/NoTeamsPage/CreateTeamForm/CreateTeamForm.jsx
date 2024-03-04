@@ -18,7 +18,7 @@ const CreateTeamForm = ({ onClose }) => {
     try {
       //Get id of the user logged in
       const playerData = await axios.get(`/api/player/username/${userName}`);
-      console.log(playerData.data._id);
+      // console.log(playerData.data._id);
       const userId = playerData.data._id;
       //Create a team and add the user to it
       const response = await axios.post("/api/team/create", {

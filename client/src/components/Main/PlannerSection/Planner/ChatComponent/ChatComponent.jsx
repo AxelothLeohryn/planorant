@@ -15,9 +15,8 @@ const ChatComponent = ({ playersData }) => {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    //REMOVE LOCALHOST, LEAVE EMPTY IN PRODUCTION
-    // const newSocket = socketIO.connect("http://localhost:5000");
-    const newSocket = socketIO.connect();
+    const newSocket = socketIO.connect(import.meta.env.VITE_API_URL);
+
 
     setSocket(newSocket);
 

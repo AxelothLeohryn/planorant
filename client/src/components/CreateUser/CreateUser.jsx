@@ -24,7 +24,7 @@ const CreateUser = () => {
       await delay(1000);
 
       setLoadingUserName(false);
-      console.log(response);
+      // console.log(response);
       setUserName(username);
       setIsNewUser(false);
     } catch (error) {

@@ -81,19 +81,19 @@ const CreateWeekForm = ({ team, teamData, onClose, toggleRefresh }) => {
         teamId: team,
         valoplant,
       });
-      console.log(response);
+      // console.log(response);
       // Add the week to each player in the team
       for (const playerId of teamData.players) {
-        console.log("Getting details from player:", playerId);
+        // console.log("Getting details from player:", playerId);
         const player = await axios.get(`/api/player/${playerId}`);
         const playerDetails = player.data;
-        console.log("Adding week to player:", playerId);
+        // console.log("Adding week to player:", playerId);
         await axios.put(`/api/player/edit/${playerId}`, {
           weeks: [...playerDetails.weeks, { week: response.data.data._id }],
         });
       }
       // Add the week to the team
-      console.log("Adding week to team:", teamData.name);
+      // console.log("Adding week to team:", teamData.name);
       await axios.put(`/api/team/edit/${team}`, {
         weeks: [...teamData.weeks, response.data.data._id],
       });
@@ -201,7 +201,7 @@ const CreateWeekForm = ({ team, teamData, onClose, toggleRefresh }) => {
 
   return (
     <form id="create-team-form" onSubmit={handleSubmit}>
-      {console.log(teamData.players)}
+      {/* {console.log(teamData.players)} */}
       <div className="mx-auto flex w-full max-w-sm flex-col gap-6">
         <div className="flex flex-col items-center">
           <h1 className="text-3xl font-semibold">ADD A WEEK</h1>

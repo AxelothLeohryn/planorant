@@ -10,7 +10,7 @@ const ChatBar = ({ socket, playersData }) => {
     };
 
     socket.on("newUserResponse", handleNewUserResponse);
-    console.log("Listening for newUserResponse");
+    // console.log("Listening for newUserResponse");
 
     // Cleanup function to remove the listener
     return () => {

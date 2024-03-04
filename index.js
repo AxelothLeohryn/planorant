@@ -26,7 +26,6 @@ const userRoutes = require("./routes/user.routes.js");
 setupSocketIO(http);
 
 app.use("/api", apiRoutes);
-// app.use("/user", userRoutes);
 
 //* Serve static assets in production, must be at this location of this file
 if (process.env.NODE_ENV === "production") {

@@ -86,7 +86,7 @@ const ChatBody = ({ socket, messages, playersData, lastMessageRef }) => {
                   message.username ===
                     localStorage.getItem("userName").replace(/"/g, "");
                 const chatAlignment = isCurrentUserMessage
-                  ? "justify-end text-right"
+                  ? "justify-end text-left"
                   : "justify-start text-left";
                 const bubbleColor = isCurrentUserMessage
                   ? "bg-content1 text-backgroundPrimary"

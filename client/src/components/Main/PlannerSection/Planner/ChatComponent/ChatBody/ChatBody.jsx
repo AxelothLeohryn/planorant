@@ -145,7 +145,7 @@ const ChatBody = ({ socket, messages, playersData, lastMessageRef }) => {
                           </time>
                         </div>
                         <div
-                          className={`w-fit p-2 rounded-lg ${bubbleColor} mb-2 break-all`}
+                          className={`w-fit p-2 rounded-lg ${bubbleColor} mb-2 break-words`}
                         >
                           {message.text}
                         </div>

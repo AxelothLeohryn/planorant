@@ -18,7 +18,7 @@ https://planorant.com/
 
 - **🗓️ Week Management**: Members of the team can add Premier weeks: select the map and the days of the Premier week.
 
-- **🕒Member availability and agent selection**: Members of the team can set their availability for each day of a Premier week, as well as their preferd agents.
+- **🕒Member availability and agent selection**: Members of the team can set their availability for each day of a Premier week, as well as their prefered agents.
 
 - **💬Live Chat and Online Members**: Plan and discuss srategies with a live chat, see who is online and who is typing, and access the team's message history from anywhere.
 

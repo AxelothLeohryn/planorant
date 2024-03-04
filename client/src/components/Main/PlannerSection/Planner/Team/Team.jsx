@@ -26,7 +26,7 @@ const Team = ({
   return (
     <>
       <section
-        className="max-w-[1920px] mx-auto"
+        className="max-w-[1920px] mx-auto "
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
@@ -34,7 +34,7 @@ const Team = ({
           <div className="min-w-0  mb-2">
             <h2 className="text-2xl font-bold leading-7 text-content1 sm:truncate sm:text-3xl sm:tracking-tight">
               {teamData.name}{" "}
-              <span className="text-2xl font-bold leading-7 text-content2 sm:truncate sm:text-xl sm:tracking-tight">
+              <span className="text-2xl font-bold leading-7 text-content2 sm:truncate sm:text-xl sm:tracking-tight ">
                 #{teamData.tag}
               </span>
             </h2>
@@ -80,7 +80,7 @@ const Team = ({
                   </div>
                   <div
                     onClick={() => handleCopyToClipboard(teamData.key)}
-                    className="relative flex items-center text-sm text-content2 cursor-pointer hover:underline underline-offset-2"
+                    className="relative flex items-center text-sm text-content2 cursor-pointer hover:underline underline-offset-2 animate-jump animate-once animate-delay-1000"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

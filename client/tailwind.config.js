@@ -40,5 +40,6 @@ export default {
       ],
     }),
     require('tailwind-scrollbar')({ nocompatible: true }),
+    require('tailwindcss-animated'),
   ],
 };

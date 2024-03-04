@@ -99,7 +99,7 @@ const Week = ({ weekId, teamData, playersData, toggleRefresh }) => {
       });
 
       const calculateAvailability = (available, unavailable) => {
-        if (available >= 5) return "dot-success";
+        if (available >= 5) return "dot-success animate-pulse";
         if (unavailable >= 3) return "dot-error";
         return "dot-warning"; // Default to yellow if undecided
       };

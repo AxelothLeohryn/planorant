@@ -25,14 +25,14 @@ const Authenticate = () => {
           alt="Background"
         />
         <div className="flex flex-col justify-center items-center max-h-screen max-w-screen relative z-10 text-center">
-          <h1 className="text-5xl lg:text-7xl font-valorant text-white">PLANORANT</h1>
-          <div className="flex flex-row gap-2">
+          <h1 className="text-5xl lg:text-7xl font-valorant text-white animate-fade-right animate-once animate-ease-in-out">PLANORANT</h1>
+          <div className="flex flex-row gap-2 animate-fade-left animate-once animate-ease-in-out">
             <h2 className="mb-6 font-bold font-DIN text-white">
               Valorant Premier Planner
             </h2>
             <img className="size-5" src="/Premier.webp" alt="Premier Logo" />
           </div>
-          <div className="flex flex-col items-center justify-center">
+          <div className="flex flex-col items-center justify-center animate-fade animate-once animate-delay-1000">
             <GoogleLogin
               onSuccess={(credentialResponse) => {
                 const decodedToken = jwtDecode(credentialResponse?.credential);

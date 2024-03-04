@@ -61,8 +61,8 @@ const CreateUser = () => {
                 type="submit"
                 className={
                   loadingUserName
-                    ? "w-full btn btn-loading bg-red-8"
-                    : "w-full btn btn-primary bg-red-8"
+                    ? "w-full btn btn-loading bg-primary"
+                    : "w-full btn btn-primary bg-primary"
                 }
               >
                 {loadingUserName ? "Loading" : "Start Planning"}

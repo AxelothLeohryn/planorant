@@ -121,7 +121,7 @@ const Planner = ({ setHaveTeam }) => {
 
         {showChatMobile && <ChatComponent playersData={playersData} />}
         <div className="2xl:flex xl:max-w-[1920px]">
-          <div className="max-w-full 2xl:w-2/3">
+          <div className="max-w-full 2xl:w-2/3 animate-fade-down md:animate-none animate-ease-out animate-duration-75">
             <Team
               teamData={teamData}
               teamMembersNumber={teamMembersNumber}

@@ -68,7 +68,7 @@ const ChatBody = ({ socket, messages, playersData, lastMessageRef }) => {
   } else {
     return (
       <>
-        <div>
+        <div className="animate-fade animate-ease-in animate-duration-[1000ms]">
           {/* Group messages by day of the month */}
           {Object.entries(groupedMessages).map(([date, messages]) => (
             <div key={date}>
@@ -121,14 +121,17 @@ const ChatBody = ({ socket, messages, playersData, lastMessageRef }) => {
                               ) {
                                 return (
                                   <div
-                                    className="avatar border-2 border-border"
+                                    className="avatar border-2 border-content3"
                                     key={player.username}
                                   >
-                                    <img
+                                    {/* <img
                                       className="w-full h-full object-cover"
                                       src={player.image}
                                       alt={player.username}
-                                    />
+                                    /> */}
+                                    <p className="text-lg text-primary">
+                                      {player.username.slice(0, 2)}
+                                    </p>
                                   </div>
                                 );
                               }

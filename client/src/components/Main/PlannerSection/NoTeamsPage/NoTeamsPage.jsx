@@ -95,7 +95,7 @@ const NoTeamsPage = ({ setHaveTeam }) => {
               <input
                 placeholder="Team Code"
                 type="text"
-                className="max-w-full input focus:border-red-7 transition"
+                className="max-w-full input focus:border-primary transition"
               />
             </div>
           </div>

@@ -16,8 +16,8 @@ const ChatComponent = ({ playersData }) => {
 
   useEffect(() => {
     //REMOVE LOCALHOST, LEAVE EMPTY IN PRODUCTION
-    // const newSocket = socketIO.connect("http://localhost:5000");
-    const newSocket = socketIO.connect();
+    const newSocket = socketIO.connect("http://localhost:5000");
+    // const newSocket = socketIO.connect();
 
     setSocket(newSocket);
 

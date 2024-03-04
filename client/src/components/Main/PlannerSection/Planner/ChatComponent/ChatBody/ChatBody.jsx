@@ -139,13 +139,13 @@ const ChatBody = ({ socket, messages, playersData, lastMessageRef }) => {
                       )}
                       <div className="items-end">
                         <div className="chat-header mb-1">
-                          <span className="font-bold">{message.name}</span>
+                          {/* <span className="font-bold">{message.name}</span> */}
                           <time className="text-xs opacity-75 ml-2">
                             {messageTime}
                           </time>
                         </div>
                         <div
-                          className={`w-fit p-2 rounded-lg ${bubbleColor} mb-2 break-words`}
+                          className={`w-fit max-w-52 md:max-w-64 p-2 rounded-lg ${bubbleColor} mb-2 break-words`}
                         >
                           {message.text}
                         </div>

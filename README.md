@@ -6,7 +6,7 @@
   <br />
   </div>
 
-# Planorant - Premiere Week Planner
+# Planorant - Premier Week Planner
 
 https://planorant.com/
 

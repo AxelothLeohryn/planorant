@@ -59,7 +59,7 @@ https://planorant.com/
 
 ## Live Chat and Online Members
 
-- Every team has his own live chat.
+- Every team has its own live chat.
 - List of Online Members.
 - Typing status, messages grouped by day. 
 

@@ -89,8 +89,8 @@ const ChatBody = ({ socket, messages, playersData, lastMessageRef }) => {
                   ? "justify-end text-left"
                   : "justify-start text-left";
                 const bubbleColor = isCurrentUserMessage
-                  ? "bg-content1 text-backgroundPrimary"
-                  : "bg-backgroundPrimary text-content1";
+                  ? "bg-content1 text-backgroundPrimary shadow-md animate-fade-left animate-duration-[400ms]"
+                  : "bg-backgroundPrimary text-content1 shadow-md animate-fade-right animate-duration-[400ms]";
 
                 const isLastMessage = index === messages.length - 1;
 
@@ -140,7 +140,11 @@ const ChatBody = ({ socket, messages, playersData, lastMessageRef }) => {
                           </div>
                         </div>
                       )}
-                      <div className={`flex flex-col ${isCurrentUserMessage? "items-end" : "items-start"}`}>
+                      <div
+                        className={`flex flex-col ${
+                          isCurrentUserMessage ? "items-end" : "items-start"
+                        }`}
+                      >
                         <div
                           className={`chat-header mb-1 mt-2 ${
                             isCurrentUserMessage ? "text-right" : "text-left"
@@ -150,16 +154,13 @@ const ChatBody = ({ socket, messages, playersData, lastMessageRef }) => {
                           <time className="text-xs opacity-50 mx-1">
                             {messageTime}
                           </time>
-                          
                         </div>
-                        
 
                         <div
                           className={`w-fit max-w-52 md:max-w-64 p-2 rounded-lg ${bubbleColor} mb-2 break-words`}
                         >
                           {message.text}
                         </div>
-                        
                       </div>
                     </div>
                     {isLastMessage && (

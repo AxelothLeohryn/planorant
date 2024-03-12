@@ -37,15 +37,18 @@ const Player = ({ playerData, weekId, onAvailabilityChange }) => {
     let updatedState;
     switch (day) {
       case "THU":
-        updatedState = availableTHU === true ? false : true;
+        updatedState =
+          availableTHU === true ? false : availableTHU === false ? null : true; // Cycle through the states
         setAvailableTHU(updatedState);
         break;
       case "SAT":
-        updatedState = availableSAT === true ? false : true;
+        updatedState =
+          availableSAT === true ? false : availableSAT === false ? null : true; // Cycle through the states
         setAvailableSAT(updatedState);
         break;
       case "SUN":
-        updatedState = availableSUN === true ? false : true;
+        updatedState =
+          availableSUN === true ? false : availableSUN === false ? null : true; // Cycle through the states
         setAvailableSUN(updatedState);
         break;
       default:
@@ -67,14 +70,14 @@ const Player = ({ playerData, weekId, onAvailabilityChange }) => {
         // Update the player's data with the modified week
         playerData.weeks[weekIndex] = updatedWeek;
         await axios.put(`/api/player/edit/${playerData._id}`, playerData);
-        onAvailabilityChange();
+        onAvailabilityChange(); 
       } else {
+        // Handle case where week is not found
         console.error("Week not found for the provided weekId:", weekId);
-        // Handle error if week is not found
       }
     } catch (error) {
+      // Handle error in updating availability
       console.error("Error updating availability:", error);
-      // Handle error
     }
   };
 
@@ -82,19 +85,20 @@ const Player = ({ playerData, weekId, onAvailabilityChange }) => {
     <article className="flex flex-col md:flex-row flex-wrap items-center justify-start md:justify-between gap-2 md:gap-4 px-4 ml-1 md:ml-7 bg-backgroundSecondary hover:bg-border border border-border roundedd">
       <div className="flex flex-row w-full pt-4 md:pt-0 md:w-2/3 items-center justify-between gap-3 md:gap-4">
         <div className="flex items-center justify-center gap-4">
-
-        <div className="avatar md:avatar-xl">
-          {/* <img src={playerData.image} alt={`${playerData.username} avatar`} /> */}
-          <p className="text-xl text-primary">{playerData.username.slice(0,2)}</p>
-        </div>
+          <div className="avatar md:avatar-xl">
+            {/* <img src={playerData.image} alt={`${playerData.username} avatar`} /> */}
+            <p className="text-xl text-primary">
+              {playerData.username.slice(0, 2)}
+            </p>
+          </div>
           <h3 className="text-lg md:text-xl font-bold text-nowrap">
             {playerData.username}
           </h3>
         </div>
         {/* <div className="flex justify-start items-center gap-6 md:w-96"> */}
-          <div className="flex w-1/2">
-            <AgentSelector playerData={playerData} weekId={weekId} />
-          </div>
+        <div className="flex w-1/2">
+          <AgentSelector playerData={playerData} weekId={weekId} />
+        </div>
         {/* </div> */}
       </div>
       <div className="m-auto md:m-2 md:mr-3 text-nowrap">

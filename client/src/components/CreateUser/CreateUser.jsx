@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useAuth } from "../../context/AuthContext";
-import { set } from "mongoose";
+import toast, { Toaster } from "react-hot-toast";
 
 const CreateUser = () => {
   const { logout, userEmail, setIsNewUser, setUserName } = useAuth();
@@ -16,10 +16,21 @@ const CreateUser = () => {
 
     setLoadingUserName(true);
     try {
-      const response = await axios.post("/api/player/create", {
-        username,
-        email: userEmail,
-      });
+       // First, check if the username already exists
+       const checkResponse = await axios.get(`/api/player/username/${username}`);
+       console.log(checkResponse);
+       if (checkResponse.data !== null) {
+         // If username exists, show a toast and do not proceed with user creation
+         toast.error("Username already exists. Please choose a different one.");
+         setLoadingUserName(false);
+         return;
+       }
+ 
+       // If username does not exist, proceed with user creation
+       const createResponse = await axios.post("/api/player/create", {
+         username,
+         email: userEmail,
+       });
 
       await delay(1000);
 
@@ -27,8 +38,11 @@ const CreateUser = () => {
       // console.log(response);
       setUserName(username);
       setIsNewUser(false);
+      toast.success("User created successfully. Welcome to Planorant!");
     } catch (error) {
       console.error(error);
+      toast.error("An error occurred. Please try again.");
+      setLoadingUserName(false);
     }
   };
   return (

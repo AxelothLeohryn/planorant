@@ -37,9 +37,9 @@ const CreateWeekComponent = ( {team, teamData, toggleRefresh}) => {
         onChange={() => setIsCreateWeekOpen(!isCreateWeekOpen)}
       />
       {isCreateWeekOpen && (
-        <div className="modal w-screen h-screen">
-          <label className="modal-overlay" onClick={toggleWeekModal}></label>
-          <div className="modal-content flex flex-col gap-5 max-w-3xl">
+        <div className="modal">
+          <label className="modal-overlay" htmlFor="modal-create-team" onClick={toggleWeekModal}></label>
+          <div className="modal-content">
             <button
               onClick={toggleWeekModal}
               className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"

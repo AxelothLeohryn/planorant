@@ -95,7 +95,7 @@ const Team = ({
                       />
                     </svg>
                     {teamData.key}
-                    {isCopied && <p className="badge ml-2 absolute left-16">Copied!</p>}
+                    {isCopied && <p className="badge badge-success md:text-base ml-5 absolute left-16 animate-fade-left animate-duration-200">Invite code copied!</p>}
                   </div>
                 </div>
               </div>

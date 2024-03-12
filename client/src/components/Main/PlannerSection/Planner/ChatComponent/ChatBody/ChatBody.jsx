@@ -108,11 +108,11 @@ const ChatBody = ({ socket, messages, playersData, lastMessageRef }) => {
                   <>
                     <div
                       key={message.id}
-                      className={`flex ${chatAlignment} mb-7`}
+                      className={`flex ${chatAlignment} mb-`}
                     >
                       {/* Conditionally render the avatar only for messages from others */}
                       {!isCurrentUserMessage && (
-                        <div className="avatar flex-shrink-0 mr-2">
+                        <div className="avatar flex-shrink-0 mr-3">
                           <div className="w-10 h-10 rounded-full overflow-hidden">
                             {playersData.map((player) => {
                               if (
@@ -140,23 +140,26 @@ const ChatBody = ({ socket, messages, playersData, lastMessageRef }) => {
                           </div>
                         </div>
                       )}
-                      <div className="items-end">
+                      <div className={`flex flex-col ${isCurrentUserMessage? "items-end" : "items-start"}`}>
                         <div
-                          className={`chat-header mb-1 ${
+                          className={`chat-header mb-1 mt-2 ${
                             isCurrentUserMessage ? "text-right" : "text-left"
                           }`}
                         >
                           <span>{message.username || message.name}</span>
-                          <time className="text-xs opacity-75 ml-2">
+                          <time className="text-xs opacity-50 mx-1">
                             {messageTime}
                           </time>
+                          
                         </div>
+                        
 
                         <div
                           className={`w-fit max-w-52 md:max-w-64 p-2 rounded-lg ${bubbleColor} mb-2 break-words`}
                         >
                           {message.text}
                         </div>
+                        
                       </div>
                     </div>
                     {isLastMessage && (

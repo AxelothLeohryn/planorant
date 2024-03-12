@@ -115,11 +115,11 @@ const Planner = ({ setHaveTeam }) => {
       <>
         {!isDesktop && (
           <button className="btn mb-2" onClick={toggleShowChatMobile}>
-            Show Chat
+            {showChatMobile ? "Hide chat" : "Show chat"}
           </button>
         )}
 
-        {showChatMobile && <ChatComponent playersData={playersData} />}
+        {showChatMobile && !isDesktop && <ChatComponent playersData={playersData} /> }
         <div className="2xl:flex xl:max-w-[1920px]">
           <div className="max-w-full 2xl:w-2/3 animate-fade-down md:animate-none animate-ease-out animate-duration-75">
             <Team

@@ -78,22 +78,25 @@ const Week = ({ weekId, teamData, playersData, toggleRefresh }) => {
         );
         if (playerWeek) {
           if (playerWeek.availableTHU !== undefined) {
-            availabilityCount.THU.available += playerWeek.availableTHU ? 1 : 0;
-            availabilityCount.THU.unavailable += playerWeek.availableTHU
-              ? 0
-              : 1;
+            if (playerWeek.availableTHU === true) {
+              availabilityCount.THU.available += 1;
+            } else if (playerWeek.availableTHU === false) {
+              availabilityCount.THU.unavailable += 1;
+            }
           }
           if (playerWeek.availableSAT !== undefined) {
-            availabilityCount.SAT.available += playerWeek.availableSAT ? 1 : 0;
-            availabilityCount.SAT.unavailable += playerWeek.availableSAT
-              ? 0
-              : 1;
+            if (playerWeek.availableSAT === true) {
+              availabilityCount.SAT.available += 1;
+            } else if (playerWeek.availableSAT === false) {
+              availabilityCount.SAT.unavailable += 1;
+            }
           }
           if (playerWeek.availableSUN !== undefined) {
-            availabilityCount.SUN.available += playerWeek.availableSUN ? 1 : 0;
-            availabilityCount.SUN.unavailable += playerWeek.availableSUN
-              ? 0
-              : 1;
+            if (playerWeek.availableSUN === true) {
+              availabilityCount.SUN.available += 1;
+            } else if (playerWeek.availableSUN === false) {
+              availabilityCount.SUN.unavailable += 1;
+            }
           }
         }
       });

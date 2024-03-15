@@ -68,7 +68,7 @@ const ChatBody = ({ socket, messages, playersData, lastMessageRef }) => {
   } else {
     return (
       <>
-        <div className="animate-fade animate-ease-in animate-duration-[1000ms]">
+        <div className="animate-fade animate-ease-in animate-duration-[1000ms] mb-2">
           {/* Group messages by day of the month */}
           {Object.entries(groupedMessages).map(([date, messages]) => (
             <div key={date}>
@@ -108,7 +108,7 @@ const ChatBody = ({ socket, messages, playersData, lastMessageRef }) => {
                   <>
                     <div
                       key={message.id}
-                      className={`flex ${chatAlignment} mb-`}
+                      className={`flex ${chatAlignment}`}
                     >
                       {/* Conditionally render the avatar only for messages from others */}
                       {!isCurrentUserMessage && (
@@ -165,7 +165,7 @@ const ChatBody = ({ socket, messages, playersData, lastMessageRef }) => {
                     </div>
                     {isLastMessage && (
                       <>
-                        <div className="" ref={lastMessageRef} />
+                        <div className="translate-y-4" ref={lastMessageRef} />
                       </>
                     )}
                   </>
@@ -176,7 +176,7 @@ const ChatBody = ({ socket, messages, playersData, lastMessageRef }) => {
           {typingUsers.length > 0 && (
             <>
               <div className="relative">
-                <div className="absolute bottom-1">
+                <div className="absolute -bottom-6">
                   <p>{getTypingMessage()}</p>
                 </div>
               </div>
